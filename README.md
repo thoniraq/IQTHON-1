@@ -1,7 +1,7 @@
 # @aaaDa @tele_thon
 # Documentation/Guide, visit [How2Techy](www.t.me//tele_thon)
 # Installing
-Join https://t.me/lite_telethon for updates and tuts
+Join https://t.me/tele_thon for updates and tuts
 ### The Easy Way
 
 [![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
