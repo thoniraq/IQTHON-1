@@ -14,7 +14,7 @@ async def cmd_list(event):
                     string += "\n"
                 string += "\n"
             if len(string) > 4095:
-                await borg.send_message(event.chat_id, "Do .help cmd")
+                await borg.send_message(event.chat_id, "Do .help cmd @aaaDa")
                 await asyncio.sleep(5)
             else:
                 await event.edit(string)
@@ -28,7 +28,7 @@ async def cmd_list(event):
             else:
                 await event.edit(input_str + " is not a valid plugin!")
         else:
-            help_string = """Userbot Helper.. Provided by @A_Dark_Princ3 \n[Check out this dope af website](https://www.moddingunited.xyz/) \n
+            help_string = """Userbot Helper.. Provided by @tele_thon \n[Check out this dope af website](https://github.com/klanrali/lite-telethon) \n
 `Userbot Helper to reveal all the commands`\n__Do .help plugin_name for commands, in case popup doesn't appear.__"""
             results = await bot.inline_query(  # pylint:disable=E0602
                 tgbotusername,
