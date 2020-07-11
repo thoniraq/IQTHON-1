@@ -1,5 +1,5 @@
 # @aaaDa @tele_thon
-# Documentation/Guide, visit [How2Techy](t.me/tele_thon)
+# Documentation/Guide, visit [How2Techy](https://www.telegram/tele_thon)
 # Installing
 Join https://t.me/lite_telethon for updates and tuts
 ### The Easy Way
