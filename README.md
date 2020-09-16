@@ -18,19 +18,19 @@ Best User Bot To Manage Your Telegram Account
 ### Host iraqbot In Heroku
 
  
-28
+
 [![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/klanrali/IRAQTHON )
 
-Simply clone the repository and run the main file:
-38
+Termix codes for installation through Termex in Google Play for installing Source Iraq Thon :
+
 `sh
-39
+
 git clone https://github.com/klanrali/iraqthon
-40
-cd FridayUserbot
-41
+
+cd iraqthon
+
 virtualenv -p /usr/bin/python3 venv
-42
+
 . ./venv/bin/activate
-43
+
 pip install -r requirements.txt
