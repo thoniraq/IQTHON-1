@@ -1,7 +1,7 @@
 import asyncio
 from PyLyrics import *
 
-@borg.on(slitu.admin_cmd(pattern="singer (.*)"))
+@borg.on(slitu.admin_cmd(pattern="تحميل  (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -10,9 +10,9 @@ async def _(event):
     try:
         song = input_str.split("-")
         if len(song) == 1:
-            await event.edit("Usage: .singer Duman - Haberin Yok Ölüyorum")
+            await event.edit("الاستعمال:اكتب اسم المغني وبجانبه اسم الاغنيه")
         else:
-            await event.edit("🔍︎Searching lyrics")
+            await event.edit("🔍︎جاري البحث")
             lyrics = PyLyrics.getLyrics(song[0].strip(), song[1].strip()).split("\n")
             lyric_message = f"Singing {song[0].strip()} from {song[1].strip()} 🎙"
             lyric_message += "\n\n" + "\n".join(lyrics)
@@ -22,4 +22,4 @@ async def _(event):
                 # TODO: send as file
                 logger.info(lyric_message)
     except ValueError:
-        await event.edit("Song not found")
+        await event.edit("لاتوجد")
