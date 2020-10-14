@@ -1,30 +1,16 @@
-#   Copyright 2019 - 2020 DarkPrinc3
-
-#   Licensed under the Apache License, Version 2.0 (the "License");
-#   you may not use this file except in compliance with the License.
-#   You may obtain a copy of the License at
-
-#       http://www.apache.org/licenses/LICENSE-2.0
-
-#   Unless required by applicable law or agreed to in writing, software
-#   distributed under the License is distributed on an "AS IS" BASIS,
-#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#   See the License for the specific language governing permissions and
-#   limitations under the License.
-
 from userbot.plugins.sql_helper.mute_sql import is_muted, mute, unmute
 import asyncio
 
-@command(outgoing=True, pattern=r"^.سكوت ?(\d+)?")
+@command(outgoing=True, pattern=r"^.اسكت ?(\d+)?")
 async def startmute(event):
     private = False
     if event.fwd_from:
         return
     elif event.is_private:
-        await event.edit("قد تحدث مشاكل غير متوقعة أو أخطاء قبيحة")
+        await event.edit("قد تحدث اشياء خطيره")
         await asyncio.sleep(3)
         private = True
-    if any([x in event.raw_text for x in ("/سكوت", "!سكوت")]):
+    if any([x in event.raw_text for x in ("/mute", "!mute")]):
         await asyncio.sleep(0.5)
     else:
         reply = await event.get_reply_message()
@@ -35,39 +21,39 @@ async def startmute(event):
         elif private is True:
             userid = event.chat_id
         else:
-            return await event.edit("يرجى الرد على مستخدم أو إضافة معرف المستخدم الخاص به إلى الأمر لكتم صوته.")
+            return await event.edit("Please reply to a user or add their userid into the command to mute them.")
         chat_id = event.chat_id
         chat = await event.get_chat()
         if "admin_rights" in vars(chat) and vars(chat)["admin_rights"] is not None: 
             if chat.admin_rights.delete_messages is True:
                 pass
             else:
-                return await event.edit("`لا يمكنك كتم صوت أي شخص إذا لم يكن لديك إذن حذف الرسائل`")
+                return await event.edit("`يجب ان تكون مشرف او لديك صلاحيه الحذف`")
         elif "creator" in vars(chat):
             pass
         elif private == True:
             pass
         else:
-            return await event.edit("`لا يمكنك كتم صوت شخص بدون حقوق المسؤول`")
+            return await event.edit("لايمكنك كتم بدون حقوق مسؤل")
         if is_muted(userid, chat_id):
-            return await event.edit("تم كتم صوت هذا المستخدم بالفعل في هذه الدردشه")
-            try:
+            return await event.edit("بالفعل تم كتمه")
+        try:
             mute(userid, chat_id)
         except Exception as e:
-            await event.edit("حدث خطا" + str(e))
+            await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("تم كتم هذا الشخص")
+            await event.edit("تم كتمه بنجاح")
 
-@command(outgoing=True, pattern=r"^.لاسكوت ?(\d+)?")
+@command(outgoing=True, pattern=r"^.لاتسكت ?(\d+)?")
 async def endmute(event):
     private = False
     if event.fwd_from:
         return
     elif event.is_private:
-        await event.edit("قد تحدث مشاكل غير متوقعة أو أخطاء قبيحة")
+        await event.edit("قد يحدث اشياء خطيره")
         await asyncio.sleep(3)
         private = True
-    if any([x in event.raw_text for x in ("/لاسكوت", "!لاسكوت")]):
+    if any([x in event.raw_text for x in ("/unmute", "!unmute")]):
         await asyncio.sleep(0.5)
     else:
         reply = await event.get_reply_message()
@@ -78,16 +64,16 @@ async def endmute(event):
         elif private is True:
             userid = event.chat_id
         else:
-            return await event.edit("يرجى الرد على مستخدم أو إضافة معرف المستخدم الخاص به إلى الأمر لإلغاء كتم الصوت")
-          chat_id = event.chat_id
+            return await event.edit("رجاء قم برد عليه او بالمعرف")
+        chat_id = event.chat_id
         if not is_muted(userid, chat_id):
-            return await event.edit(" لم يتم كتم صوت هذا المستخدم في هذه الدردشة")
+            return await event.edit("ان هذا شخص غير مكتوم")
         try:
             unmute(userid, chat_id)
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("تم فك السكوت")
+            await event.edit("تم فتح كتمه بنجاخ")
             
 
 @command(outgoing=True, pattern=r"^.mute ?(\d+)?", allow_sudo=True)
