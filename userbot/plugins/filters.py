@@ -65,7 +65,7 @@ async def on_snip(event):
                 last_triggered_filters[event.chat_id].remove(name)
 
 
-@command(pattern="^.savefilter (.*)")
+@command(pattern="^.وضع رد (.*)")
 async def on_snip_save(event):
     name = event.pattern_match.group(1)
     msg = await event.get_reply_message()
@@ -86,10 +86,10 @@ async def on_snip_save(event):
         add_filter(event.chat_id, name, snip['text'], snip['type'], snip.get('id'), snip.get('hash'), snip.get('fr'))
         await event.edit(f"filter {name} saved successfully. Get it with {name}")
     else:
-        await event.edit("Reply to a message with `savefilter keyword` to save the filter")
+        await event.edit("قم برد على الكلمه التي تريد وضع رد عليها")
 
 
-@command(pattern="^.listfilters$")
+@command(pattern="^.لسته الردود$")
 async def on_snip_list(event):
     all_snips = get_all_filters(event.chat_id)
     OUT_STR = "Available Filters in the Current Chat:\n"
@@ -114,14 +114,14 @@ async def on_snip_list(event):
         await event.edit(OUT_STR)
 
 
-@command(pattern="^.clearfilter (.*)")
+@command(pattern="^.حذف رد (.*)")
 async def on_snip_delete(event):
     name = event.pattern_match.group(1)
     remove_filter(event.chat_id, name)
-    await event.edit(f"filter {name} deleted successfully")
+    await event.edit(f"الرد {name} تم حذف الرد")
 
 
-@command(pattern="^.clearallfilters$")
+@command(pattern="^.مسح جميع ردود$")
 async def on_all_snip_delete(event):
     remove_all_filters(event.chat_id)
-    await event.edit(f"filters **in current chat** deleted successfully")
+    await event.edit(f"تم مسح جميع ردود")
