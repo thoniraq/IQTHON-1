@@ -297,6 +297,29 @@ async def edit_or_reply(event, text):
         return await event.reply(text)
     return await event.edit(text)
 
+def sudo_cmd(pattern=None, **args):
+    args["func"] = lambda e: e.via_bot_id is None
+    stack = inspect.stack()
+    previous_stack_frame = stack[1]
+    file_test = Path(previous_stack_frame.filename)
+    file_test = file_test.stem.replace(".py", "")
+    allow_sudo = args.get("allow_sudo", False)
+    # get the pattern from the decorator
+    if pattern is not None:
+        if pattern.startswith(r"\#"):
+            # special fix for snip.py
+            args["pattern"] = re.compile(pattern)
+        else:
+            catreg = "^" + Config.SUDO_COMMAND_HAND_LER
+            args["pattern"] = re.compile(catreg + pattern)
+            reg = Config.SUDO_COMMAND_HAND_LER[1]
+            cmd = (reg + pattern).replace("$", "").replace("\\", "").replace("^", "")
+            try:
+                SUDO_LIST[file_test].append(cmd)
+            except BaseException:
+                SUDO_LIST.update({file_test: [cmd]})
+    args["outgoing"] = True
+
 def time_formatter(milliseconds: int) -> str:
     """Inputs time in milliseconds, to get beautified time,
     as string"""
