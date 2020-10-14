@@ -15,16 +15,16 @@
 from userbot.plugins.sql_helper.mute_sql import is_muted, mute, unmute
 import asyncio
 
-@command(outgoing=True, pattern=r"^.mute ?(\d+)?")
+@command(outgoing=True, pattern=r"^.سكوت ?(\d+)?")
 async def startmute(event):
     private = False
     if event.fwd_from:
         return
     elif event.is_private:
-        await event.edit("Unexpected issues or ugly errors may occur!")
+        await event.edit("قد تحدث مشاكل غير متوقعة أو أخطاء قبيحة")
         await asyncio.sleep(3)
         private = True
-    if any([x in event.raw_text for x in ("/mute", "!mute")]):
+    if any([x in event.raw_text for x in ("/سكوت", "!سكوت")]):
         await asyncio.sleep(0.5)
     else:
         reply = await event.get_reply_message()
@@ -35,39 +35,39 @@ async def startmute(event):
         elif private is True:
             userid = event.chat_id
         else:
-            return await event.edit("Please reply to a user or add their userid into the command to mute them.")
+            return await event.edit("يرجى الرد على مستخدم أو إضافة معرف المستخدم الخاص به إلى الأمر لكتم صوته.")
         chat_id = event.chat_id
         chat = await event.get_chat()
         if "admin_rights" in vars(chat) and vars(chat)["admin_rights"] is not None: 
             if chat.admin_rights.delete_messages is True:
                 pass
             else:
-                return await event.edit("`You can't mute a person if you dont have delete messages permission. ಥ﹏ಥ`")
+                return await event.edit("`لا يمكنك كتم صوت أي شخص إذا لم يكن لديك إذن حذف الرسائل`")
         elif "creator" in vars(chat):
             pass
         elif private == True:
             pass
         else:
-            return await event.edit("`You can't mute a person without admin rights niqq.` ಥ﹏ಥ  ")
+            return await event.edit("`لا يمكنك كتم صوت شخص بدون حقوق المسؤول`")
         if is_muted(userid, chat_id):
-            return await event.edit("This user is already muted in this chat ~~lmfao sed rip~~")
-        try:
+            return await event.edit("تم كتم صوت هذا المستخدم بالفعل في هذه الدردشه")
+            try:
             mute(userid, chat_id)
         except Exception as e:
-            await event.edit("Error occured!\nError is " + str(e))
+            await event.edit("حدث خطا" + str(e))
         else:
-            await event.edit("Successfully muted that person.\n**｀-´)⊃━☆ﾟ.*･｡ﾟ **")
+            await event.edit("تم كتم هذا الشخص")
 
-@command(outgoing=True, pattern=r"^.unmute ?(\d+)?")
+@command(outgoing=True, pattern=r"^.لاسكوت ?(\d+)?")
 async def endmute(event):
     private = False
     if event.fwd_from:
         return
     elif event.is_private:
-        await event.edit("Unexpected issues or ugly errors may occur!")
+        await event.edit("قد تحدث مشاكل غير متوقعة أو أخطاء قبيحة")
         await asyncio.sleep(3)
         private = True
-    if any([x in event.raw_text for x in ("/unmute", "!unmute")]):
+    if any([x in event.raw_text for x in ("/لاسكوت", "!لاسكوت")]):
         await asyncio.sleep(0.5)
     else:
         reply = await event.get_reply_message()
@@ -78,16 +78,16 @@ async def endmute(event):
         elif private is True:
             userid = event.chat_id
         else:
-            return await event.edit("Please reply to a user or add their userid into the command to unmute them.")
-        chat_id = event.chat_id
+            return await event.edit("يرجى الرد على مستخدم أو إضافة معرف المستخدم الخاص به إلى الأمر لإلغاء كتم الصوت")
+          chat_id = event.chat_id
         if not is_muted(userid, chat_id):
-            return await event.edit("__This user is not muted in this chat__\n（ ^_^）o自自o（^_^ ）")
+            return await event.edit(" لم يتم كتم صوت هذا المستخدم في هذه الدردشة")
         try:
             unmute(userid, chat_id)
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("Successfully unmuted that person\n乁( ◔ ౪◔)「    ┑(￣Д ￣)┍")
+            await event.edit("تم فك السكوت")
             
 
 @command(outgoing=True, pattern=r"^.mute ?(\d+)?", allow_sudo=True)
