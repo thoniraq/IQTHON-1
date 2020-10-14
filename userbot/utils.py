@@ -1,17 +1,3 @@
-#   Copyright 2019 - 2020 DarkPrinc3
-
-#   Licensed under the Apache License, Version 2.0 (the "License");
-#   you may not use this file except in compliance with the License.
-#   You may obtain a copy of the License at
-
-#       http://www.apache.org/licenses/LICENSE-2.0
-
-#   Unless required by applicable law or agreed to in writing, software
-#   distributed under the License is distributed on an "AS IS" BASIS,
-#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#   See the License for the specific language governing permissions and
-#   limitations under the License.
-
 from userbot import bot
 from telethon import events
 from var import Var
@@ -303,6 +289,13 @@ def humanbytes(size):
         raised_to_pow += 1
     return str(round(size, 2)) + " " + dict_power_n[raised_to_pow] + "B"
 
+async def edit_or_reply(event, text):
+    if event.from_id in Config.SUDO_USERS:
+        reply_to = await event.get_reply_message()
+        if reply_to:
+            return await reply_to.reply(text)
+        return await event.reply(text)
+    return await event.edit(text)
 
 def time_formatter(milliseconds: int) -> str:
     """Inputs time in milliseconds, to get beautified time,
@@ -321,5 +314,4 @@ def time_formatter(milliseconds: int) -> str:
 class Loader():
     def __init__(self, func=None, **args):
         self.Var = Var
-        bot.add_event_handler(func, events.NewMessage(**args))
-
+        bot.add_event_handler(func, events.NewMessage(**args)
