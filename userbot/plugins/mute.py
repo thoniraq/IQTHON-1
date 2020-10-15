@@ -21,7 +21,7 @@ async def startmute(event):
         elif private is True:
             userid = event.chat_id
         else:
-            return await event.edit("Please reply to a user or add their userid into the command to mute them.")
+            return await event.edit("يرجى الرد على المستخدم")
         chat_id = event.chat_id
         chat = await event.get_chat()
         if "admin_rights" in vars(chat) and vars(chat)["admin_rights"] is not None: 
@@ -73,7 +73,7 @@ async def endmute(event):
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("تم فتح كتمه بنجاخ")
+            await event.edit("تم فتح كتمه بنجاح")
             
 
 @command(outgoing=True, pattern=r"^.mute ?(\d+)?", allow_sudo=True)
