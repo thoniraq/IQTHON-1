@@ -21,14 +21,14 @@ import zipfile
 extracted = Config.TMP_DOWNLOAD_DIRECTORY + "extracted/"
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 
-@borg.on(admin_cmd("zip"))
+@borg.on(admin_cmd("ضغط ملف"))
 async def _(event):
     if event.fwd_from:
         return
     if not event.is_reply:
-        await event.edit("Reply to a file to compress it. Bruh.")
+        await event.edit("رد على الملف لتضغطه")
         return
-    mone = await event.edit("Processing ...")
+    mone = await event.edit("جاري...")
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if event.reply_to_msg_id:
@@ -63,11 +63,11 @@ def zipdir(path, ziph):
             os.remove(os.path.join(root, file))
 
 
-@command(pattern="^.unzip")
+@command(pattern="^!فك الضفط")
 async def _(event):
     if event.fwd_from:
         return
-    mone = await event.edit("Processing ...")
+    mone = await event.edit("جاري...")
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if event.reply_to_msg_id:
