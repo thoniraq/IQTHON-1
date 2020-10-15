@@ -75,7 +75,7 @@ async def rm_deletedacc(show):
                 del_u += 1
                 await sleep(1)
         if del_u > 0:
-            del_status = f"لقد وجدت **{del_u}** `في حاله اردت التنضيف ارسل `.مسح المحذوفين"
+            del_status = f"لقد وجدت **{del_u}** `clean في حاله اردت مسح المحذوفين ارسل `.المحذوفين"
         await show.edit(del_status)
         return
 
