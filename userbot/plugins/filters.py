@@ -1,9 +1,9 @@
 # @iraqthon $
-"""Filters
+"""الردود
 Available Commands:
-.savefilter
-.listfilters
-.clearfilter"""
+.وضع رد
+.لسته الردود
+.حذف رد"""
 import asyncio
 import re
 from telethon import events, utils
