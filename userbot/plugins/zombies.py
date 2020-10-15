@@ -2,10 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-"""Cmd= `.zombie`
+"""Cmd= `.المحذوفين`
 Usage: Searches for deleted accounts in a groups and channels.
-Use .zombies clean to remove deleted accounts from the groups and channels.
-\nPorted by ©[NIKITA](t.me/kirito6969) and ©[EYEPATCH](t.me/NeoMatrix90)"""
+Use .المحذوفين تنظيف to remove deleted accounts from the groups and channels.
+\nPorted by ©[klanr](t.me/klanr) and ©[iraqthon](t.me/tele_thon)"""
 
 from telethon import events
 from userbot.utils import admin_cmd
@@ -58,25 +58,24 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
 
 
-@borg.on(admin_cmd(pattern=f"zombies", allow_sudo=True))
-@borg.on(events.NewMessage(pattern="^.zombies(?: |$)(.*)", outgoing=True))
+@borg.on(admin_cmd(pattern=f"المحذوفين", allow_sudo=True))
+@borg.on(events.NewMessage(pattern="^.المحذوفين(?: |$)(.*)", outgoing=True))
 async def rm_deletedacc(show):
     """ For .zombies command, list all the ghost/deleted/zombie accounts in a chat. """
 
     con = show.pattern_match.group(1).lower()
     del_u = 0
-    del_status = "`No deleted accounts found, Group is clean`"
+    del_status = "لايوجد محذوفين"
 
     if con != "clean":
-        await show.edit("`Searching for ghost/deleted/zombie accounts...`")
+        await show.edit("جاري بحث على حسابات محذوفه ...")
         async for user in show.client.iter_participants(show.chat_id):
 
             if user.deleted:
                 del_u += 1
                 await sleep(1)
         if del_u > 0:
-            del_status = f"`Found` **{del_u}** `ghost/deleted/zombie account(s) in this group,\
-            \nclean them by using .zombies clean`"
+            del_status = f"لقد وجدت **{del_u}** `في حاله اردت التنضيف ارسل `.مسح المحذوفين"
         await show.edit(del_status)
         return
 
@@ -87,10 +86,10 @@ async def rm_deletedacc(show):
 
     # Well
     if not admin and not creator:
-        await show.edit("`I am not an admin here!`")
+        await show.edit("انا لست ادمن هنا")
         return
 
-    await show.edit("`Deleting deleted accounts...\nOh I can do that?!?!`")
+    await show.edit("حذف حسابات محذوفه هل يمكنني ذالك")
     del_u = 0
     del_a = 0
 
@@ -100,7 +99,7 @@ async def rm_deletedacc(show):
                 await show.client(
                     EditBannedRequest(show.chat_id, user.id, BANNED_RIGHTS))
             except ChatAdminRequiredError:
-                await show.edit("`I don't have ban rights in this group`")
+                await show.edit("لايمكنني ليس لدي صلاحيه حظر")
                 return
             except UserAdminInvalidError:
                 del_u -= 1
@@ -111,11 +110,11 @@ async def rm_deletedacc(show):
 
 
     if del_u > 0:
-        del_status = f"Cleaned **{del_u}** deleted account(s)"
+        del_status = f"تم الازاله **{del_u}** حسابات محذوفه"
 
     if del_a > 0:
-        del_status = f"Cleaned **{del_u}** deleted account(s) \
-        \n**{del_a}** deleted admin accounts are not removed"
+        del_status = f"تم الازاله **{del_u}** حسابات محذوفه \
+        \n**{del_a}** لايمكنني حذف الادمنيه"
 
 
     await show.edit(del_status)
@@ -125,7 +124,7 @@ async def rm_deletedacc(show):
 
     if Config.G_BAN_LOGGER_GROUP is not None:
         await show.client.send_message(
-            Config.G_BAN_LOGGER_GROUP, "#CLEANUP\n"
-            f"Cleaned **{del_u}** deleted account(s) !!\
-            \nCHAT: {show.chat.title}(`{show.chat_id}`)")
+            Config.G_BAN_LOGGER_GROUP, "#تنظيف\n"
+            f"تم التنظيف **{del_u}** حسابات محذوفه !!\
+            \nمن الدردشه: {show.chat.title}(`{show.chat_id}`)")
 
