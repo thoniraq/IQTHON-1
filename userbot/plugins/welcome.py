@@ -71,7 +71,7 @@ async def _(event):
     rm_welcome_setting(event.chat_id)
     await event.edit(
         "@tele_thon تم حذف ترحيب. " + \
-        "The previous welcome message was `{}`.".format(cws.custom_welcome_message)
+        "رساله الترحيب السابقه هيه `{}`.".format(cws.custom_welcome_message)
     )
 
 @command(pattern="^.لسته ترحيب")  # pylint:disable=E0602
@@ -86,5 +86,5 @@ async def _(event):
     )
     else:
         await event.edit(
-            "No Welcome Message found"
+            "لايوجد لسته ترحيب"
         )
