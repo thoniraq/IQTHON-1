@@ -1,7 +1,8 @@
+#"""@iqthon iraq ©
 """ Google Text to Speech
 Available Commands:
-.tts LanguageCode as reply to a message
-.tts LangaugeCode | text to speak"""
+.ترجمه صوتيه LanguageCode as reply to a message
+.ترجمه صوتيه LangaugeCode | text to speak"""
 
 import asyncio
 import os
@@ -11,7 +12,7 @@ from gtts import gTTS
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("tts (.*)"))
+@borg.on(admin_cmd("ترجمه صوتيه (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -24,7 +25,7 @@ async def _(event):
     elif "|" in input_str:
         lan, text = input_str.split("|")
     else:
-        await event.edit("Invalid Syntax. Module stopping.")
+        await event.edit("غير صالح")
         return
     text = text.strip()
     lan = lan.strip()
@@ -32,7 +33,7 @@ async def _(event):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     required_file_name = Config.TMP_DOWNLOAD_DIRECTORY + "voice.ogg"
     try:
-        #https://github.com/SpEcHiDe/UniBorg/commit/17f8682d5d2df7f3921f50271b5b6722c80f4106
+        
         tts = gTTS(text, lang=lan)
         tts.save(required_file_name)
         command_to_execute = [
@@ -53,7 +54,7 @@ async def _(event):
             t_response = subprocess.check_output(command_to_execute, stderr=subprocess.STDOUT)
         except (subprocess.CalledProcessError, NameError, FileNotFoundError) as exc:
             await event.edit(str(exc))
-            # continue sending required_file_name
+            
         else:
             os.remove(required_file_name)
             required_file_name = required_file_name + ".opus"
@@ -62,7 +63,7 @@ async def _(event):
         await borg.send_file(
             event.chat_id,
             required_file_name,
-            # caption="Processed {} ({}) in {} seconds!".format(text[0:97], lan, ms),
+          
             reply_to=event.message.reply_to_msg_id,
             allow_cache=False,
             voice_note=True
