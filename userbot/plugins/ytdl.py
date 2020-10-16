@@ -1,4 +1,4 @@
-# iraqthon 
+# Thanks to @AvinashReddy3108 for this plugin
 
 """
 Audio and video downloader using Youtube-dl
@@ -49,7 +49,7 @@ async def progress(current, total, event, start, type_of_ps, file_name=None):
 def humanbytes(size):
     """Input size in bytes,
     outputs in a human readable format"""
-  
+    # https://stackoverflow.com/a/49361727/4723940
     if not size:
         return ""
     # 2 ** 10 = 1024
@@ -76,7 +76,7 @@ def time_formatter(milliseconds: int) -> str:
         ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
     return tmp[:-2]
 
-@borg.on(admin_cmd(pattern="تنزيل(a|v) (!*)"))
+@borg.on(admin_cmd(pattern="تنزيل(ص|ف) (.*)"))
 async def download_video(v_url):
     """ For .ytdl command, download media from YouTube and many other sites. """
     url = v_url.pattern_match.group(2)
@@ -84,7 +84,7 @@ async def download_video(v_url):
 
     await v_url.edit("جاري التنزيل ..")
 
-    if type == "a":
+    if type == "ص":
         opts = {
             'format':
             'bestaudio',
@@ -115,7 +115,7 @@ async def download_video(v_url):
         video = False
         song = True
 
-    elif type == "v":
+    elif type == "ف":
         opts = {
             'format':
             'best',
@@ -197,7 +197,7 @@ async def download_video(v_url):
         os.remove(f"{ytdl_data['id']}.mp3")
         await v_url.delete()
     elif video:
-        await v_url.edit(f"`نستعد لتنزيل الفديو:`\
+        await v_url.edit(f"نستعد لتنزيل الفديو:`\
         \n**{ytdl_data['title']}**\
         \nby *{ytdl_data['uploader']}*")
         await v_url.client.send_file(
@@ -211,4 +211,3 @@ async def download_video(v_url):
                          f"{ytdl_data['title']}.mp4")))
         os.remove(f"{ytdl_data['id']}.mp4")
         await v_url.delete()
-        
