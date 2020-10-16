@@ -1,11 +1,11 @@
-# (c) @UniBorg
+# (c) @IQTHON
 
 from telethon import events
 import asyncio
 from collections import deque
 
 
-@borg.on(events.NewMessage(pattern=r"\.lol", outgoing=True))
+@borg.on(events.NewMessage(pattern=r"\.افكر", outgoing=True))
 async def _(event):
 	if event.fwd_from:
 		return
