@@ -1,7 +1,7 @@
 {
-  "name": "lite-telethon",
-  "description": "Userbot created by a SNAPDRAGON and custom fork by ANUBIS\n\n join https://t.me/tele_thon for any problems or support",
-  "logo": "https://telegra.ph/file/8a8a2f0ac16736c037f5b.jpg",
+  "name": "IQTHON",
+  "description": "bot iraq thon for iraqi and me ch @IQTHON and ma dav @klanr",
+  "logo": "https://telegra.ph/file/1fabd12aaedc567b1690c.jpg",
   "keywords": [
     "telegram",
     "userbot",
@@ -9,18 +9,23 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/klanrali/lite-telethon/",
+   "repository": "https://github.com/klanrali/IQTHON/",
   "website": "#TODO",
   "success_url": "#TODO",
+  "stack": "container",
   "env": {
     "ENV": {
       "description": "Setting this to ANYTHING will enable heroku.",
-      "value": "ANYTHING"
+      "value": ""
     },
-    "TEMP_DOWNLOAD_DIRECTORY": {
+    "TMP_DOWNLOAD_DIRECTORY": {
       "description": "Where downloaded files will go.",
-      "value": "./userbot/DOWNLOADS/",
+      "value": "./DOWNLOADS/",
       "required": false
+    },
+    "ALIVE_NAME": {
+      "description": "give your name",
+      "value": "@IQTHON"
     },
     "APP_ID": {
       "description": "Get this value from my.telegram.org! Please do not steal",
@@ -34,64 +39,27 @@
       "description": "Get this value by running python3 telesetup.py locally",
       "value": ""
     },
-    "MAX_FLOOD_IN_P_M_s": {
-      "description": "Maximum number of messages a person can send in pm before getting blocked. Value must be an integer. 3 by default.",
-      "value": "3",
-      "required": false
-    },
-    "OCR_SPACE_API_KEY": {
-      "description": "Required for OCR functionality. Get from https://ocr.space/ocrapi",
-      "value": "",
-      "required": false
-    },
-    "REM_BG_API_KEY": {
-      "description": "Required for Removing image background functionality. Get from https://www.remove.bg/",
-      "value": "",
-      "required": false
-    },
-    "GITHUB_ACCESS_TOKEN": {
-      "description": "Your Github Access Token for gitcommit plugin.Google 'Github access token' to find.",
-      "value": "",
-      "required": false
-    },
-    "GIT_REPO_NAME": {
-      "description": "Your repo name Example: Total-Noob-69/X-Tra-Telegram, but GITHUB_ACCESS_TOKEN must be setup first.",
-      "value": "",
-      "required": false
-    },
-    "LYDIA_API_KEY": {
-      "description": "Needed for Lydia AI. Follow https://telegra.ph/Lydia-09-05 to get your API.",
-      "value": "",
-      "required": false
+    "TG_BOT_USER_NAME_BF_HER": {
+      "description": "Needed for inline buttons maker. Make a bot at http://telegram.dog/BotFather and get the username of your bot",
+      "value": ""
     },
     "TG_BOT_TOKEN_BF_HER": {
       "description": "Needed for inline buttons maker. Make a bot at http://telegram.dog/BotFather and get the token of your bot.Worth it. Get it.",
+      "value": ""
+    },
+    "HEROKU_API_KEY": {
+      "description": "Required for updating the bot and other stuff get it from https://dashboard.heroku.com/account",
       "value": "",
       "required": false
     },
-    "CHROME_BIN": {
-      "description": "For Carbon.py. Leave as it is. ",
-      "value": "/app/.apt/usr/bin/google-chrome",
-      "required": false
-    },
-    "CHROME_DRIVER": {
-      "description": "For Carbon.py. Leave as it is. ",
-      "value": "/app/.chromedriver/bin/chromedriver",
-      "required": false
-    },
-    "TG_BOT_USER_NAME_BF_HER": {
-      "description": "Needed for inline buttons maker. Make a bot at http://telegram.dog/BotFather and get the username of your bot",
-      "value": "",
-      "required": false
-    },
-    "DOWNLOAD_PFP_URL_CLOCK": {
-      "description": "Needed for autopic module. A url that is a preview link of your Profile Pic",
-      "value": "",
+     "ALIVE_PIC": {
+      "description": "the pic that to show in your alive message url.",
+      "value": "https://telegra.ph/file/1fabd12aaedc567b1690c.jpg",
       "required": false
     },
     "TZ": {
       "description": "Required for Correct Time on autopic/get time. Know your timezone from http://www.timezoneconverter.com/cgi-bin/findzone.tzc",
-      "value": "Asia/Kolkata",
+      "value": "Asia/Baghdad",
       "required": false
     }
   },
