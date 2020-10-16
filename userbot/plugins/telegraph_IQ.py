@@ -1,5 +1,5 @@
-# (c) @IQTHON
-Available Commands:
+"""# (c) @IQTHON
+.Available Commands:
 .تليجراف media as reply to a media
 .تليجراف text as reply to a large text"""
 from telethon import events
