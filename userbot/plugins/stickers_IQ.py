@@ -30,7 +30,7 @@ from telethon.tl.types import (
 from userbot.utils import admin_cmd
 from userbot import ALIVE_NAME
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "No name set yet nibba, check pinned in @XtraTgBot"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "No name set yet nibba, check pinned in @iqthon"
 FILLED_UP_DADDY = "Invalid pack selected."
 
 @borg.on(admin_cmd(pattern="صنع ملصق ?(.*)"))
@@ -51,7 +51,7 @@ async def _(event):
         user.first_name = user.id
     pack = 1
     userid = event.from_id
-    packname = f"{user.first_name}'s @iraqthon Vol.{pack}"
+    packname = f"{user.first_name}'s @iqthon Vol.{pack}"
     packshortname = f"vol_{pack}_with_{userid}"
     await event.edit("غضون ثواني")
 
@@ -193,8 +193,8 @@ async def _(event):
                 await silently_send_message(bot_conv, "/done")
 
 
-    await event.edit(f"**تحذير!** `تم سرقه هذا الملصق الى` [here](t.me/iqthon/{packshortname}), pack{pack}"
-                     f" `by` {DEFAULTUSER}\n**ᕦ(ò_óˇ)ᕤ**")
+    await event.edit(f"تم صنع ملصقك لايجاده هنا` [this place](t.me/addstickers/{packshortname}), pack{pack}"
+                     f" `by` {DEFAULTUSER}\n-@iraqthon")
 
 
 @borg.on(admin_cmd(pattern="معلومات ملصق"))
