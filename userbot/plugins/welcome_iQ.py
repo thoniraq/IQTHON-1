@@ -1,3 +1,4 @@
+#"""@iqthon iraq ©
 from telethon import events
 from telethon.utils import pack_bot_file_id
 from userbot.plugins.sql_helper.welcome_sql import get_current_welcome_settings, \
@@ -56,11 +57,11 @@ async def _(event):
     if msg and msg.media:
         bot_api_file_id = pack_bot_file_id(msg.media)
         add_welcome_setting(event.chat_id, msg.message, True, 0, bot_api_file_id)
-        await event.edit("@tele_thon تم حفض ترحيب. ")
+        await event.edit("@iqthon تم حفض ترحيب. ")
     else:
         input_str = event.text.split(None, 1)
         add_welcome_setting(event.chat_id, input_str[1], True, 0, None)
-        await event.edit("@tele_thon تم حفض ترحيب.. ")
+        await event.edit("@iqthon تم حفض ترحيب.. ")
 
 
 @command(pattern="^.مسح ترحيب")  # pylint:disable=E0602
@@ -70,7 +71,7 @@ async def _(event):
     cws = get_current_welcome_settings(event.chat_id)
     rm_welcome_setting(event.chat_id)
     await event.edit(
-        "@tele_thon تم حذف ترحيب. " + \
+        "@iqthon تم حذف ترحيب. " + \
         "رساله الترحيب السابقه هيه `{}`.".format(cws.custom_welcome_message)
     )
 
