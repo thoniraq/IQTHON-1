@@ -1,5 +1,6 @@
+#"""@iqthon iraq ©
 """Get Telegram Profile Picture and other information
-Syntax: .whois @username"""
+Syntax: .ايدي @username"""
 
 import html
 from telethon.tl.functions.photos import GetUserPhotosRequest
