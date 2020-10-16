@@ -9,23 +9,18 @@
     "modular",
     "productivity"
   ],
-   "repository": "https://github.com/klanrali/IQTHON/",
+  "repository": "https://github.com/klanrali/IQTHON/",
   "website": "#TODO",
   "success_url": "#TODO",
-  "stack": "container",
   "env": {
     "ENV": {
       "description": "Setting this to ANYTHING will enable heroku.",
-      "value": ""
+      "value": "ANYTHING"
     },
-    "TMP_DOWNLOAD_DIRECTORY": {
+    "TEMP_DOWNLOAD_DIRECTORY": {
       "description": "Where downloaded files will go.",
-      "value": "./DOWNLOADS/",
+      "value": "./userbot/DOWNLOADS/",
       "required": false
-    },
-    "ALIVE_NAME": {
-      "description": "give your name",
-      "value": "@IQTHON"
     },
     "APP_ID": {
       "description": "Get this value from my.telegram.org! Please do not steal",
@@ -39,20 +34,41 @@
       "description": "Get this value by running python3 telesetup.py locally",
       "value": ""
     },
-    "TG_BOT_USER_NAME_BF_HER": {
-      "description": "Needed for inline buttons maker. Make a bot at http://telegram.dog/BotFather and get the username of your bot",
-      "value": ""
+    "OCR_SPACE_API_KEY": {
+      "description": "Required for OCR functionality. Get from https://ocr.space/ocrapi",
+      "value": "",
+      "required": false
     },
     "TG_BOT_TOKEN_BF_HER": {
       "description": "Needed for inline buttons maker. Make a bot at http://telegram.dog/BotFather and get the token of your bot.Worth it. Get it.",
-      "value": ""
+      "value": "",
+      "required": false
     },
-    "HEROKU_API_KEY": {
+    "CHROME_BIN": {
+      "description": "For Carbon.py. Leave as it is. ",
+      "value": "/app/.apt/usr/bin/google-chrome",
+      "required": false
+    },
+    "CHROME_DRIVER": {
+      "description": "For Carbon.py. Leave as it is. ",
+      "value": "/app/.chromedriver/bin/chromedriver",
+      "required": false
+    },
+    "TG_BOT_USER_NAME_BF_HER": {
+      "description": "Needed for inline buttons maker. Make a bot at http://telegram.dog/BotFather and get the username of your bot",
+      "value": "",
+      "required": false
+    },
+    "ALIVE_NAME": {
+      "description": "give your name",
+      "value": "@iraqthon"
+    },
+      "HEROKU_API_KEY": {
       "description": "Required for updating the bot and other stuff get it from https://dashboard.heroku.com/account",
       "value": "",
       "required": false
     },
-     "ALIVE_PIC": {
+    "ALIVE_PIC": {
       "description": "the pic that to show in your alive message url.",
       "value": "https://telegra.ph/file/1fabd12aaedc567b1690c.jpg",
       "required": false
