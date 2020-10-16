@@ -84,7 +84,7 @@ async def on_snip_save(event):
         add_filter(event.chat_id, name, snip['text'], snip['type'], snip.get('id'), snip.get('hash'), snip.get('fr'))
         await event.edit(f"filter {name} saved successfully. Get it with {name}")
     else:
-        await event.edit("قم برد على الكلمه التي تريد وضع رد عليها")
+        await event.edit("-@iqthon قم برد على الكلمه التي تريد وضع رد عليها")
 
 
 @command(pattern="^.لسته الردود$")
@@ -116,7 +116,7 @@ async def on_snip_list(event):
 async def on_snip_delete(event):
     name = event.pattern_match.group(1)
     remove_filter(event.chat_id, name)
-    await event.edit(f"الرد {name} تم حذف الرد")
+    await event.edit(f"-@iqthon الرد {name} تم حذف الرد")
 
 
 @command(pattern="^.مسح جميع ردود$")
