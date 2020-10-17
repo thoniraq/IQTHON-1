@@ -1,8 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
+# @iqthon c 2021
 """ Userbot module for purging unneeded messages(usually spam or ot). """
 
 from asyncio import sleep
@@ -13,10 +9,10 @@ from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.utils import register, errors_handler
 
 
-@register(outgoing=True, pattern="^.purge$")
+@register(outgoing=True, pattern="^.مسح جميع رسائل$")
 @errors_handler
 async def fastpurger(purg):
-    """ For .purge command, purge all messages starting from the reply. """
+    """ قم برد على اول رساله بل مجموعه.لحذف جميع رسائل """
     chat = await purg.get_input_chat()
     msgs = []
     count = 0
@@ -34,21 +30,21 @@ async def fastpurger(purg):
         await purg.client.delete_messages(chat, msgs)
     done = await purg.client.send_message(
         purg.chat_id,
-        "`Fast purge complete!\n`Purged " + str(count) + " messages.",
+        "اكتمل مسح سريع!\n`تم مسح عدد " + str(count) + " من رسائل.",
     )
 
     if BOTLOG:
         await purg.client.send_message(
             BOTLOG_CHATID,
-            "Purge of " + str(count) + " messages done successfully.")
+            "تنضيف " + str(count) + " الرسائل بنجاح.")
     await sleep(2)
     await done.delete()
 
 
-@register(outgoing=True, pattern="^.purgeme")
+@register(outgoing=True, pattern="^.مسح رسائل")
 @errors_handler
 async def purgeme(delme):
-    """ For .purgeme, delete x count of your latest message."""
+    """ بنسبه لمسح رسائلي قم بالامر وبجانبه العدد."""
     message = delme.text
     count = int(message[9:])
     i = 1
@@ -62,18 +58,18 @@ async def purgeme(delme):
 
     smsg = await delme.client.send_message(
         delme.chat_id,
-        "`Purge complete!` Purged " + str(count) + " messages.",
+        "تنضيف اكتمل!` عدد " + str(count) + " الرسائل.",
     )
     if BOTLOG:
         await delme.client.send_message(
             BOTLOG_CHATID,
-            "Purge of " + str(count) + " messages done successfully.")
+            "تنضيف عدد " + str(count) + " تم بنجاح.")
     await sleep(2)
     i = 1
     await smsg.delete()
 
 
-@register(outgoing=True, pattern="^.del$")
+@register(outgoing=True, pattern="^.حذف$")
 @errors_handler
 async def delete_it(delme):
     """ For .del command, delete the replied message. """
@@ -84,17 +80,17 @@ async def delete_it(delme):
             await delme.delete()
             if BOTLOG:
                 await delme.client.send_message(
-                    BOTLOG_CHATID, "Deletion of message was successful")
+                    BOTLOG_CHATID, "تم حذف الرساله")
         except rpcbaseerrors.BadRequestError:
             if BOTLOG:
                 await delme.client.send_message(
-                    BOTLOG_CHATID, "Well, I can't delete a message")
+                    BOTLOG_CHATID, "لايمكنني حذف الرساله")
 
 
-@register(outgoing=True, pattern="^.edit")
+@register(outgoing=True, pattern="^.تعديل")
 @errors_handler
 async def editer(edit):
-    """ For .editme command, edit your last message. """
+    """ قم بتعديل رسالتك الاخيره. """
     message = edit.text
     chat = await edit.get_input_chat()
     self_id = await edit.client.get_peer_id('me')
@@ -108,10 +104,10 @@ async def editer(edit):
         i = i + 1
     if BOTLOG:
         await edit.client.send_message(BOTLOG_CHATID,
-                                       "Edit query was executed successfully")
+                                       "تم تحرير بنجاح")
 
 
-@register(outgoing=True, pattern="^.sd")
+@register(outgoing=True, pattern="^.رساله موقته")
 @errors_handler
 async def selfdestruct(destroy):
     """ For .sd command, make seflf-destructable messages. """
@@ -124,7 +120,7 @@ async def selfdestruct(destroy):
     await smsg.delete()
     if BOTLOG:
         await destroy.client.send_message(BOTLOG_CHATID,
-                                          "sd query done successfully")
+                                          "تم التنفيذ بنجاح")
 
 
 CMD_HELP.update({
