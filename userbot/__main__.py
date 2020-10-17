@@ -74,7 +74,7 @@ for name in files:
 
 import userbot._core
 
-print("Yay your userbot is officially working. Ja gaand mara")
+print("الان البوت الخاص بك شغال بدون مشاكل @iqthon قم بارسال .alive")
 
 if len(argv) not in (1, 3, 4):
     bot.disconnect()
