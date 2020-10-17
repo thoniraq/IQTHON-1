@@ -1,20 +1,4 @@
-# (c) Shrimadhav U K
-#
-# This file is part of @UniBorg
-#
-# @UniBorg is free software; you cannot redistribute it and/or modify
-# it under the terms of the GNU General Public License as published
-# by the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# @UniBorg is not distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-"""Remove.BG Plugin for @UniBorg
-Syntax: .rmbg https://link.to/image.extension
-Syntax: .rmbg as reply to a media"""
+#@iqthon 2021 c
 import asyncio
 from datetime import datetime
 import io
@@ -24,13 +8,13 @@ from telethon import events
 from userbot.utils import progress, admin_cmd
 
 
-@borg.on(admin_cmd("rmbg ?(.*)"))
+@borg.on(admin_cmd("حذف خلفيه ?(.*)"))
 async def _(event):
-    HELP_STR = "`.rmbg` as reply to a media, or give a link as an argument to this command"
+    HELP_STR = "قم برد على الصوره"
     if event.fwd_from:
         return
     if Config.REM_BG_API_KEY is None:
-        await event.edit("You need API token from remove.bg to use this plugin.")
+        await event.edit("يجب تعين ايبي فير من remove.bg هنا")
         return False
     input_str = event.pattern_match.group(1)
     start = datetime.now()
@@ -38,8 +22,8 @@ async def _(event):
     if event.reply_to_msg_id:
         message_id = event.reply_to_msg_id
         reply_message = await event.get_reply_message()
-        # check if media message
-        await event.edit("`Parsing the image.`")
+      #@iqthon 2021 c
+        await event.edit("تحليل الصوره")
         try:
             downloaded_file_name = await borg.download_media(
                 reply_message,
@@ -49,11 +33,11 @@ async def _(event):
             await event.edit(str(e))
             return
         else:
-            await event.edit("sending to ReMove.BG")
+            await event.edit("اقوم بالارسال الان")
             output_file_name = ReTrieveFile(downloaded_file_name)
             os.remove(downloaded_file_name)
     elif input_str:
-        await event.edit("sending to ReMove.BG")
+        await event.edit("اقوم بالارسال الان")
         output_file_name = ReTrieveURL(input_str)
     else:
         await event.edit(HELP_STR)
@@ -72,13 +56,12 @@ async def _(event):
             )
         end = datetime.now()
         ms = (end - start).seconds
-        await event.edit("Removed image's Background in {} seconds, powered by @XtraTgBot".format(ms))
+        await event.edit("تم ازاله خلقيه صوره في {} ثانيه, تابع @IQTHON".format(ms))
     else:
-        await event.edit("ReMove.BG API returned Errors. Please report to @XtraTgBot\n`{}".format(output_file_name.content.decode("UTF-8")))
+        await event.edit("ايبي الفير خطا. رجاء تعلم من @IQTHON\n`{}".format(output_file_name.content.decode("UTF-8")))
 
 
-# this method will call the API, and return in the appropriate format
-# with the name provided.
+#@iqthon 2021 c
 def ReTrieveFile(input_file_name):
     headers = {
         "X-API-Key": Config.REM_BG_API_KEY,
