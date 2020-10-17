@@ -1,7 +1,7 @@
 from userbot.plugins.sql_helper.mute_sql import is_muted, mute, unmute
 import asyncio
 
-@command(outgoing=True, pattern=r"^.اسكت ?(\d+)?")
+@command(outgoing=True, pattern=r"^.كتم ?(\d+)?")
 async def startmute(event):
     private = False
     if event.fwd_from:
@@ -44,7 +44,7 @@ async def startmute(event):
         else:
             await event.edit("تم كتمه بنجاح")
 
-@command(outgoing=True, pattern=r"^.لاتسكت ?(\d+)?")
+@command(outgoing=True, pattern=r"^.فتح كتم ?(\d+)?")
 async def endmute(event):
     private = False
     if event.fwd_from:
