@@ -1,4 +1,4 @@
-# Code from pro sar Spechide's fork of Uniborg.
+#@iqthon 2021 c
 """Rename Telegram Files
 Syntax:
 .rnupload file.name"""
@@ -20,14 +20,14 @@ from uniborg.util import progress, humanbytes, time_formatter, admin_cmd
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 
 
-@borg.on(admin_cmd(pattern="rnupload (.*)"))
+@borg.on(admin_cmd(pattern="تسميه ملف (.*)"))
 async def _(event):
     if event.fwd_from:
         return
     thumb = None
     if os.path.exists(thumb_image_path):
         thumb = thumb_image_path
-    await event.edit("⚡️`Rename and upload in progress, please wait!`⚡️")
+    await event.edit("⚡️`جاري التسميه يرجى الانتضار`⚡️")
     input_str = event.pattern_match.group(1)
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
@@ -57,9 +57,9 @@ async def _(event):
             end_two = datetime.now()
             os.remove(downloaded_file_name)
             ms_two = (end_two - end).seconds
-            await event.edit("Downloaded in {} seconds. Uploaded in {} seconds.".format(ms_one, ms_two))
+            await event.edit("تحميل خلال {} ثواني. الرفع خلال {} ثواني.".format(ms_one, ms_two))
         else:
-            await event.edit("File Not Found {}".format(input_str))
+            await event.edit("الملف خطا {}".format(input_str))
     else:
-        await event.edit("Syntax // .rnupload file.name as reply to a Telegram media")
+        await event.edit("للعمل قم برد على الملف ب .تسميه ملف +الاسم")
 
