@@ -74,7 +74,7 @@ for name in files:
 
 import userbot._core
 
-print("الان البوت الخاص بك شغال بدون مشاكل @iqthon قم بارسال .alive")
+print("Source Iraq Thon has been successfully launched, now work to follow us on t.me/iqthon and the developer @klanr is now sending .alive")
 
 if len(argv) not in (1, 3, 4):
     bot.disconnect()
