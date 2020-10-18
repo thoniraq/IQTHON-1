@@ -1,6 +1,7 @@
+
 """
 Available Commands
-.muth"""
+.+18"""
 
 from telethon import events
 
@@ -24,7 +25,7 @@ async def _(event):
 
     input_str = event.pattern_match.group(1)
 
-    if input_str == "muth":
+    if input_str == "+18":
 
         await event.edit(input_str)
 
@@ -49,7 +50,7 @@ async def _(event):
             "8==✊️=D💦💦",
 
             "8=✊️==D💦💦💦"
-
+            "iqthon"
         ]
 
         for i in animation_ttl:
