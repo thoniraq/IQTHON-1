@@ -9,7 +9,7 @@ from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
 from userbot.utils import register, errors_handler
 
 
-@register(outgoing=True, pattern="^.مسح جميع رسائل$")
+@register(outgoing=True, pattern="^.مسح الكل$")
 @errors_handler
 async def fastpurger(purg):
     """ قم برد على اول رساله بل مجموعه.لحذف جميع رسائل """
@@ -41,7 +41,7 @@ async def fastpurger(purg):
     await done.delete()
 
 
-@register(outgoing=True, pattern="^.مسح رسائل")
+@register(outgoing=True, pattern="^.مسح عدد")
 @errors_handler
 async def purgeme(delme):
     """ بنسبه لمسح رسائلي قم بالامر وبجانبه العدد."""
