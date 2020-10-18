@@ -1,11 +1,11 @@
-#By STARKTM1
+# @iqthon c 2021
 from telethon import events
 import asyncio
 import os
 import sys
 
 
-@borg.on(events.NewMessage(pattern=r"\.plane", outgoing=True))
+@borg.on(events.NewMessage(pattern=r"\.طياره", outgoing=True))
 async def _(event):
     if event.fwd_from:
         return
