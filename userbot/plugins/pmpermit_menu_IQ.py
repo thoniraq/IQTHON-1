@@ -26,19 +26,19 @@ async def _(event):
                   "`1`. @IQTHON\n"
                   "`2`. @IQTHON\n"
                   "`3`. @IQTHON\n")
-         PM = ("انت الان تقوم بلوصول الا قائمه `"
+         PM = ("قائمه اعدادت عراق ثون لحمايه الرسائل المزعجه-🕷🇮🇶"
                f"{DEFAULTUSER}.\n"
-               "اسمح لي ان اعرف لماذا انت هنا.__\n"
-               "**اسل الرقم  الذي تريده من قائمه الاسفل:**\n\n"
-               "`1`. ماذا تريد من الاستاذ\n"
-               "`2`. يرجى عدم تكرار رسائل.\n"
-               "`3`.او ارسال رساله مزعجه.\n"
-               "`4`. للاستفسار @IQTHON\n")
-         ONE = ("@IQTHON")
+               "في حاله تكرار الرسائل سوف تنحظر-🕷🇮🇶\n"
+               "ارسل الرقم بدون تكرار !!-🕷🇮🇶\n"
+               "`1`. اريد المراسله-🕷🇮🇶\n"
+               "`2`. قناه عراق ثون-🕷🇮🇶\n"
+               "`3`.ريبو عراق ثون-🕷🇮🇶\n"
+               "`4`. بوت اوامر عراق ثون-🕷🇮🇶\n")
+         ONE = ("حسنا ارسل رسالتك كامله عند الفراغ ارد عليك")
          TWO = ("@IQTHON")
-         THREE = ("@IQTHON")
-         FOUR = ("@IQTHON")
-         LWARN = ("@IQTHON")
+         THREE = ("https://github.com/klanrali/IQTHON")
+         FOUR = ("@iraqthonbot")
+         LWARN = ("https://www.youtube.com/watch?v=HKLtmbiFi_Q&t=3s")
      
         async with borg.conversation(chat) as conv:
          await borg.send_message(chat, PM)
@@ -74,7 +74,7 @@ async def _(event):
              await response.delete()
              x = response.text
              if x == "1":
-                 await borg.send_message(chat, "@IQTHON")
+                 await borg.send_message(chat, "حسنا ارسل رسالتك كامله عند الفراغ ارد عليك")
                  response = await conv.get_response(chat)
                  if not response.text == "/start":
                      await borg.send_message(chat, LWARN)
@@ -87,7 +87,7 @@ async def _(event):
                          await asyncio.sleep(3)
                          await event.client(functions.contacts.BlockRequest(chat_id))
              elif x == "2":
-                 await borg.send_message(chat, "**@IQTHON**")
+                 await borg.send_message(chat, "@IQTHON")
                  response = await conv.get_response(chat)
                  if not response.text == "/start":
                      await borg.send_message(chat, LWARN)
@@ -100,7 +100,7 @@ async def _(event):
                          await asyncio.sleep(3)
                          await event.client(functions.contacts.BlockRequest(chat_id))
              elif x == "3":
-                 await borg.send_message(chat, "@IQTHON")
+                 await borg.send_message(chat, "https://github.com/klanrali/IQTHON")
                  response = await conv.get_response(chat)
                  if not response.text == "/start":
                      await borg.send_message(chat, LWARN)
@@ -113,7 +113,7 @@ async def _(event):
                          await asyncio.sleep(3)
                          await event.client(functions.contacts.BlockRequest(chat_id))
              else:
-                 await borg.send_message(chat, "@IQTHON")
+                 await borg.send_message(chat, "https://github.com/klanrali/IQTHON")
                  response = await conv.get_response(chat)
                  if not response.text.startswith("/start"):
                      await borg.send_message(chat, TWO)
@@ -143,7 +143,7 @@ async def _(event):
                      await asyncio.sleep(3)
                      await event.client(functions.contacts.BlockRequest(chat_id))
          else:
-             await borg.send_message(chat, "@IQTHON")
+             await borg.send_message(chat, "https://www.youtube.com/watch?v=HKLtmbiFi_Q&t=3s")
              response = await conv.get_response(chat)
              z = response.text
              if not z == "/start":
