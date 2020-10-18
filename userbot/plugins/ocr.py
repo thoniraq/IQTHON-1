@@ -1,7 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
+# @iqthon c 2021
 
 from telethon import events
 import os
@@ -42,9 +39,9 @@ async def ocr_space_file(filename,
     return r.json()
 
 
-@register(pattern="^.ocr(?: |$)(.*)", outgoing=True)
+@register(pattern="^.اقرء(?: |$)(.*)", outgoing=True)
 async def ocr(event):
-    await event.edit("`Reading...`")
+    await event.edit("جاري القراءه...")
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
     lang_code = event.pattern_match.group(1)
@@ -55,9 +52,9 @@ async def ocr(event):
     try:
         ParsedText = test_file["ParsedResults"][0]["ParsedText"]
     except BaseException:
-        await event.edit("`Couldn't read it.`\n`I guess I need new glasses.`")
+        await event.edit("عذرا يجب عليك وضع فير هيروكو OCR يوجد هنا شرح @IQTHON")
     else:
-        await event.edit(f"`Here's what I could read from it:`\n\n{ParsedText}"
+        await event.edit(f"هذا الذي يمكنني قرائته:`\n\n{ParsedText}"
                          )
     os.remove(downloaded_file_name)
 
