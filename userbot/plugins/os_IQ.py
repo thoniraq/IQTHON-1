@@ -1,3 +1,4 @@
+# @iqthon c 2021
 """Emoji
 
 Available Commands:
