@@ -1,11 +1,12 @@
+# @iqthon c 2021
 """Pins the replied message
-Syntax: .cpin [LOUD]"""
+Syntax: .تثبيت [LOUD]"""
 from telethon import events
 from telethon.tl import functions, types
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("cpin ?(.*)"))
+@borg.on(admin_cmd("تثبيت ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -26,4 +27,4 @@ async def _(event):
         else:
             await event.delete()
     else:
-        await event.edit("Reply to a message to pin the message in this Channel.")
+        await event.edit("قم برد على الرساله لتثبيته في القناه او المجموعه.")
