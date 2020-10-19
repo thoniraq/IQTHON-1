@@ -2,7 +2,7 @@
 
 Available Commands:
 
-.ding"""
+.دنكه"""
 
 from telethon import events
 
@@ -26,7 +26,7 @@ async def _(event):
 
     input_str = event.pattern_match.group(1)
 
-    if input_str == "ding":
+    if input_str == "دنكه":
 
         await event.edit(input_str)
 
@@ -41,7 +41,7 @@ async def _(event):
             "⬜⬜⬛⬜⬜\n⬜⬜⬛⬜⬜\n⬜⬜🔴⬜⬜",
             "⬜⬜⬛⬜⬜\n⬜⬛⬜⬜⬜\n🔴⬜⬜⬜⬜",
             "🔴⬛⬛⬜⬜\n⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜",
-            "⬜⬜⬜⬜⬜\n⬜ [BECOME A VIDHAYAK](https://github.com/Dark-Princ3/X-tra-Telegram/) ⬜\n⬜⬜⬜⬜⬜"
+            "⬜⬜⬜⬜⬜\n⬜ [iqthon](t.me/iqthon) ⬜\n⬜⬜⬜⬜⬜"
 
  ]
 
