@@ -1,10 +1,9 @@
 """
-Syntax : .gps <location name>
-credits :@mrconfused
+Syntax : .موقع <location name>
+credits :@iqthon
 """
 
-#help from @sunda005 and @SpEcHIDe
-# don't edit credits 
+#help from @iqthon 
 
 from geopy.geocoders import Nominatim
 from userbot.utils import admin_cmd
@@ -12,7 +11,7 @@ from telethon.tl import types
 
 
 
-@borg.on(admin_cmd(pattern="gps ?(.*)"))
+@borg.on(admin_cmd(pattern="موقع ?(.*)"))
 async def gps(event):
     if event.fwd_from:
         return
@@ -22,11 +21,11 @@ async def gps(event):
     input_str = event.pattern_match.group(1)
 
     if not input_str:
-        return await event.edit("what should i find give me location.")
+        return await event.edit("ماذا يجب ان اجد ضع الامر بجانبه اسم مدينه او محافضه")
 
     await event.edit("finding")
 
-    geolocator = Nominatim(user_agent="catuserbot")
+    geolocator = Nominatim(user_agent="iqthon")
     geoloc = geolocator.geocode(input_str)
 
     if geoloc:
