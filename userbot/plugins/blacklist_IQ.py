@@ -1,11 +1,9 @@
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+# This Source IQTHON AND DAV @KLANR
 """Filters
 Available Commands:
-.addblacklist
-.listblacklist
-.rmblacklist"""
+.حظر كلمه
+.لتسه الكلمات المحظوره
+.امسح حظر"""
 import asyncio
 import re
 import userbot.plugins.sql_helper.blacklist_sql as sql
@@ -30,16 +28,16 @@ async def on_new_message(event):
             break
 
 
-@borg.on(admin_cmd("addblacklist ((.|\n)*)"))
+@borg.on(admin_cmd("حظر كلمه ((.|\n)*)"))
 async def on_add_black_list(event):
     text = event.pattern_match.group(1)
     to_blacklist = list(set(trigger.strip() for trigger in text.split("\n") if trigger.strip()))
     for trigger in to_blacklist:
         sql.add_to_blacklist(event.chat_id, trigger.lower())
-    await event.edit("Added {} triggers to the blacklist in the current chat".format(len(to_blacklist)))
+    await event.edit("اضافه {} الى القائمه المحظوره".format(len(to_blacklist)))
 
 
-@borg.on(admin_cmd("listblacklist"))
+@borg.on(admin_cmd("لسته الكلمات المحظوره"))
 async def on_view_blacklist(event):
     all_blacklisted = sql.get_chat_blacklist(event.chat_id)
     OUT_STR = "Blacklists in the Current Chat:\n"
@@ -47,7 +45,7 @@ async def on_view_blacklist(event):
         for trigger in all_blacklisted:
             OUT_STR += f"👉 {trigger} \n"
     else:
-        OUT_STR = "No BlackLists. Start Saving using `.addblacklist`"
+        OUT_STR = "لاتوجد لسته محظوره `.حظر كلمه`"
     if len(OUT_STR) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(OUT_STR)) as out_file:
             out_file.name = "blacklist.text"
@@ -56,7 +54,7 @@ async def on_view_blacklist(event):
                 out_file,
                 force_document=True,
                 allow_cache=False,
-                caption="BlackLists in the Current Chat",
+                caption="القائمه السوداء في دردشه الحاليه",
                 reply_to=event
             )
             await event.delete()
@@ -64,7 +62,7 @@ async def on_view_blacklist(event):
         await event.edit(OUT_STR)
 
 
-@borg.on(admin_cmd("rmblacklist ((.|\n)*)"))
+@borg.on(admin_cmd("امسح حظر ((.|\n)*)"))
 async def on_delete_blacklist(event):
     text = event.pattern_match.group(1)
     to_unblacklist = list(set(trigger.strip() for trigger in text.split("\n") if trigger.strip()))
@@ -72,4 +70,4 @@ async def on_delete_blacklist(event):
     for trigger in to_unblacklist:
         if sql.rm_from_blacklist(event.chat_id, trigger.lower()):
             successful += 1
-    await event.edit(f"Removed {successful} / {len(to_unblacklist)} from the blacklist")
+    await event.edit(f"حذف {successful} / {len(to_unblacklist)} من قائمه سوداء")
