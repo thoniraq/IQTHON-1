@@ -1,22 +1,19 @@
-"""Default Permission in Telegram 5.0.1
-Available Commands: .lock <option>, .unlock <option>, .locks
-API Options: msg, media, sticker, gif, gamee, ainline, gpoll, adduser, cpin, changeinfo
-DB Options: bots, commands, email, forward, url"""
+# @IQTHON AND DAV @KLANR C
 
 from telethon import events, functions, types
 from userbot.plugins.sql_helper.locks_sql import update_lock, is_locked, get_locks
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("lock( (?P<target>\S+)|$)"))
+@borg.on(admin_cmd("قفل( (?P<target>\S+)|$)"))
 async def _(event):
-     # Space weirdness in regex required because argument is optional and other
+     # @IQTHON AND DAV @KLANR C
      # commands start with ".lock"
     if event.fwd_from:
         return
     input_str = event.pattern_match.group("target")
     peer_id = event.chat_id
-    if input_str in (("bots", "commands", "email", "forward", "url")):
+    if input_str in (("بوتات", "تعليق", "ايميل", "توجيه", "رابط")):
         update_lock(peer_id, input_str, True)
         await event.edit(
             "Locked {}".format(input_str)
@@ -33,25 +30,25 @@ async def _(event):
         cpin = None
         changeinfo = None
         if input_str:
-            if "msg" in input_str:
+            if "قفل الرسائل" in input_str:
                 msg = True
-            if "media" in input_str:
+            if "الوسائط" in input_str:
                 media = True
-            if "sticker" in input_str:
+            if "الملصقات" in input_str:
                 sticker = True
-            if "gif" in input_str:
+            if "المتحركات" in input_str:
                 gif = True
-            if "gamee" in input_str:
+            if "الالعاب" in input_str:
                 gamee = True
-            if "ainline" in input_str:
+            if "الانلاين" in input_str:
                 ainline = True
             if "gpoll" in input_str:
                 gpoll = True
-            if "adduser" in input_str:
+            if "الاضافه" in input_str:
                 adduser = True
-            if "cpin" in input_str:
+            if "التثبيت" in input_str:
                 cpin = True
-            if "changeinfo" in input_str:
+            if "المعلومات" in input_str:
                 changeinfo = True
         banned_rights = types.ChatBannedRights(
             until_date=None,
@@ -68,7 +65,7 @@ async def _(event):
             change_info=changeinfo,
         )
         try:
-            result = await borg(  # pylint:disable=E0602
+            result = await borg(  # @IQTHON AND DAV @KLANR C
                 functions.messages.EditChatDefaultBannedRightsRequest(
                     peer=peer_id,
                     banned_rights=banned_rights
@@ -78,68 +75,68 @@ async def _(event):
             await event.edit(str(e))
         else:
             await event.edit(
-                "Current Chat Default Permissions Changed Successfully, in API"
+                "تم القفل من صلاحيات المجموعه بنجاح"
             )
 
 
-@borg.on(admin_cmd("unlock ?(.*)"))
+@borg.on(admin_cmd("فتح قفل ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
     input_str = event.pattern_match.group(1)
     peer_id = event.chat_id
-    if input_str in (("bots", "commands", "email", "forward", "url")):
+    if input_str in (("بوتات", "تعليق", "ايميل", "توجيه", "رابط")):
         update_lock(peer_id, input_str, False)
         await event.edit(
             "UnLocked {}".format(input_str)
         )
     else:
         await event.edit(
-            "Use `.lock` without any parameters to unlock API locks"
+            "تم فتح القفل بنجاح"
         )
 
 
-@borg.on(admin_cmd("curenabledlocks"))
+@borg.on(admin_cmd("معلومات الاقفال"))
 async def _(event):
     if event.fwd_from:
         return
     res = ""
     current_db_locks = get_locks(event.chat_id)
     if not current_db_locks:
-        res = "There are no DataBase locks in this chat"
+        res = "لاتوجد اقفال من قبل حسابك شخصي في هل مجموعه"
     else:
-        res = "Following are the DataBase locks in this chat: \n"
-        res += "👉 `bots`: `{}`\n".format(current_db_locks.bots)
-        res += "👉 `commands`: `{}`\n".format(current_db_locks.commands)
-        res += "👉 `email`: `{}`\n".format(current_db_locks.email)
-        res += "👉 `forward`: `{}`\n".format(current_db_locks.forward)
-        res += "👉 `url`: `{}`\n".format(current_db_locks.url)
+        res = "🕷🇮🇶انت قافل من حسابك الشخصي: \n"
+        res += "🕷🇮🇶 بوتات : `{}`\n".format(current_db_locks.bots)
+        res += "🕷🇮🇶 تعليقات : `{}`\n".format(current_db_locks.commands)
+        res += "🕷🇮🇶 ايميل : `{}`\n".format(current_db_locks.email)
+        res += "🕷🇮🇶 توجيه : `{}`\n".format(current_db_locks.forward)
+        res += "🕷🇮🇶 روابط : `{}`\n".format(current_db_locks.url)
     current_chat = await event.get_chat()
     try:
         current_api_locks = current_chat.default_banned_rights
     except AttributeError as e:
         logger.info(str(e))
     else:
-        res += "\nFollowing are the API locks in this chat: \n"
-        res += "👉 `msg`: `{}`\n".format(current_api_locks.send_messages)
-        res += "👉 `media`: `{}`\n".format(current_api_locks.send_media)
-        res += "👉 `sticker`: `{}`\n".format(current_api_locks.send_stickers)
-        res += "👉 `gif`: `{}`\n".format(current_api_locks.send_gifs)
-        res += "👉 `gamee`: `{}`\n".format(current_api_locks.send_games)
-        res += "👉 `ainline`: `{}`\n".format(current_api_locks.send_inline)
-        res += "👉 `gpoll`: `{}`\n".format(current_api_locks.send_polls)
-        res += "👉 `adduser`: `{}`\n".format(current_api_locks.invite_users)
-        res += "👉 `cpin`: `{}`\n".format(current_api_locks.pin_messages)
-        res += "👉 `changeinfo`: `{}`\n".format(current_api_locks.change_info)
+        res += "🕷🇮🇶صلاحيات المجموعه للارسال: \n"
+        res += "🕷🇮🇶 الرسائل : `{}`\n".format(current_api_locks.send_messages)
+        res += "🕷🇮🇶 ميديا : `{}`\n".format(current_api_locks.send_media)
+        res += "🕷🇮🇶 ملصقات: `{}`\n".format(current_api_locks.send_stickers)
+        res += "🕷🇮🇶 متحركات : `{}`\n".format(current_api_locks.send_gifs)
+        res += "🕷🇮🇶 العاب : `{}`\n".format(current_api_locks.send_games)
+        res += "🕷🇮🇶 الانلاين : `{}`\n".format(current_api_locks.send_inline)
+        res += "🕷🇮🇶 الجميع : `{}`\n".format(current_api_locks.send_polls)
+        res += "🕷🇮🇶 اضافه : `{}`\n".format(current_api_locks.invite_users)
+        res += "🕷🇮🇶 التثبيت : `{}`\n".format(current_api_locks.pin_messages)
+        res += "🕷🇮🇶 معلومات : `{}`\n".format(current_api_locks.change_info)
     await event.edit(res)
 
 
 @borg.on(events.MessageEdited())  # pylint:disable=E0602
 @borg.on(events.NewMessage())  # pylint:disable=E0602
 async def check_incoming_messages(event):
-    # TODO: exempt admins from locks
+    # @IQTHON AND DAV @KLANR C
     peer_id = event.chat_id
-    if is_locked(peer_id, "commands"):
+    if is_locked(peer_id, "تعليق"):
         entities = event.message.entities
         is_command = False
         if entities:
@@ -151,19 +148,19 @@ async def check_incoming_messages(event):
                 await event.delete()
             except Exception as e:
                 await event.reply(
-                    "I don't seem to have ADMIN permission here. \n`{}`".format(str(e))
+                    "لايمكنني ليس لدي اذن ادمن هنا. \n`{}`".format(str(e))
                 )
-                update_lock(peer_id, "commands", False)
-    if is_locked(peer_id, "forward"):
+                update_lock(peer_id, "تعليق", False)
+    if is_locked(peer_id, "توجيه"):
         if event.fwd_from:
             try:
                 await event.delete()
             except Exception as e:
                 await event.reply(
-                    "I don't seem to have ADMIN permission here. \n`{}`".format(str(e))
+                    "لايمكنني ليس لدي اذن ادمن هنا. \n`{}`".format(str(e))
                 )
-                update_lock(peer_id, "forward", False)
-    if is_locked(peer_id, "email"):
+                update_lock(peer_id, "توجيه", False)
+    if is_locked(peer_id, "ايميل"):
         entities = event.message.entities
         is_email = False
         if entities:
@@ -175,10 +172,10 @@ async def check_incoming_messages(event):
                 await event.delete()
             except Exception as e:
                 await event.reply(
-                    "I don't seem to have ADMIN permission here. \n`{}`".format(str(e))
+                    "ليس لدي اذن ادمن هنا. \n`{}`".format(str(e))
                 )
-                update_lock(peer_id, "email", False)
-    if is_locked(peer_id, "url"):
+                update_lock(peer_id, "ايميل", False)
+    if is_locked(peer_id, "رابط"):
         entities = event.message.entities
         is_url = False
         if entities:
@@ -190,16 +187,16 @@ async def check_incoming_messages(event):
                 await event.delete()
             except Exception as e:
                 await event.reply(
-                    "I don't seem to have ADMIN permission here. \n`{}`".format(str(e))
+                    "ليس لدي ادمن هنا. \n`{}`".format(str(e))
                 )
-                update_lock(peer_id, "url", False)
+                update_lock(peer_id, "رابط", False)
 
 
-@borg.on(events.ChatAction())  # pylint:disable=E0602
+@borg.on(events.ChatAction())  # # @IQTHON AND DAV @KLANR C
 async def _(event):
-    # TODO: exempt admins from locks
-    # check for "lock" "bots"
-    if is_locked(event.chat_id, "bots"):
+    # # @IQTHON AND DAV @KLANR C
+    # # @IQTHON AND DAV @KLANR C
+    if is_locked(event.chat_id, "بوتات"):
         # bots are limited Telegram accounts,
         # and cannot join by themselves
         if event.user_added:
@@ -222,11 +219,11 @@ async def _(event):
                         ))
                     except Exception as e:
                         await event.reply(
-                            "I don't seem to have ADMIN permission here. \n`{}`".format(str(e))
+                            "ليس لدي اذن ادمن هنا. \n`{}`".format(str(e))
                         )
-                        update_lock(event.chat_id, "bots", False)
+                        update_lock(event.chat_id, "بوتات", False)
                         break
             if Config.G_BAN_LOGGER_GROUP is not None and is_ban_able:
                 ban_reason_msg = await event.reply(
-                    "!warn [user](tg://user?id={}) Please Do Not Add BOTs to this chat.".format(users_added_by)
+                    "!البوتات [user](tg://user?id={}) الرجاء عدم اضافه بوتات هنا.".format(users_added_by)
                 )
