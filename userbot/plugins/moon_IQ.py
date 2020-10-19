@@ -1,3 +1,4 @@
+# @IQTHON AND DAV @KLANR C
 """Emoji
 
 Available Commands:
@@ -32,7 +33,7 @@ async def _(event):
 
     input_str = event.pattern_match.group(1)
 
-    if input_str == "smoon":
+    if input_str == "اقمار":
 
         await event.edit(input_str)
 
@@ -70,7 +71,7 @@ async def _(event):
 
     input_str = event.pattern_match.group(1)
 
-    if input_str == "tmoon":
+    if input_str == "قمور":
 
         await event.edit(input_str)
 
