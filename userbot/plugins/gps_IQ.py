@@ -41,6 +41,6 @@ async def gps(event):
         )
         await event.delete()
     else:
-        await event.edit("i coudn't find it")
+        await event.edit("لايوجد هل موقع")
         
         
