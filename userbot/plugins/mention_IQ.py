@@ -1,11 +1,10 @@
-# For Uniborg
-# (c) @INF1N17Y
+# @IQTHON AND DAV @KLANR C
 
 from telethon import events
 from uniborg.util import admin_cmd
 
 
-@borg.on(admin_cmd("mention (.*)"))
+@borg.on(admin_cmd("عنوان (.*)"))
 async def _(event):
 	if event.fwd_from:
 		return	
