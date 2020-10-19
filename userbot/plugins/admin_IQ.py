@@ -1,7 +1,4 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
+# # This Source IQTHON AND DAV @KLANR
 """
 Userbot module to help you manage a group
 """
@@ -72,12 +69,12 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
 
 
-@register(outgoing=True, pattern="^.setgpic$")
+@register(outgoing=True, pattern="^.وضع صوره$")
 @errors_handler
 async def set_group_photo(gpic):
     """ For .setgpic command, changes the picture of a group """
     if not gpic.is_group:
-        await gpic.edit("`I don't think this is a group.`")
+        await gpic.edit("لااعتقد ان هذا مجموعه")
         return
     replymsg = await gpic.get_reply_message()
     chat = await gpic.get_chat()
@@ -110,7 +107,7 @@ async def set_group_photo(gpic):
             await gpic.edit(PP_ERROR)
 
 
-@register(outgoing=True, pattern="^.promote(?: |$)(.*)")
+@register(outgoing=True, pattern="^.رفع مشرف(?: |$)(.*)")
 @errors_handler
 async def promote(promt):
     """ For .promote command, promotes the replied/tagged person """
@@ -132,7 +129,7 @@ async def promote(promt):
                                  delete_messages=True,
                                  pin_messages=True)
 
-    await promt.edit("`Promoting...`")
+    await promt.edit("`جاري رفع مشرف...`")
     user, rank = await get_user_from_event(promt)
     if not rank:
         rank = "admeme"  # Just in case.
@@ -145,7 +142,7 @@ async def promote(promt):
     try:
         await promt.client(
             EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
-        await promt.edit("`Promoted Successfully! Now gib Party`")
+        await promt.edit("تم رفع بنجاح`")
 
     # If Telethon spit BadRequestError, assume
     # we don't have Promote permission
@@ -161,7 +158,7 @@ async def promote(promt):
             f"CHAT: {promt.chat.title}(`{promt.chat_id}`)")
 
 
-@register(outgoing=True, pattern="^.demote(?: |$)(.*)")
+@register(outgoing=True, pattern="^.تنزيل مشرف(?: |$)(.*)")
 @errors_handler
 async def demote(dmod):
     """ For .demote command, demotes the replied/tagged person """
@@ -175,7 +172,7 @@ async def demote(dmod):
         return
 
     # If passing, declare that we're going to demote
-    await dmod.edit("`Demoting...`")
+    await dmod.edit("جاري تنزيل...`")
     rank = "admeme"  # dummy rank, lol.
     user = await get_user_from_event(dmod)
     user = user[0]
@@ -201,17 +198,17 @@ async def demote(dmod):
     except BadRequestError:
         await dmod.edit(NO_PERM)
         return
-    await dmod.edit("`Demoted this retard Successfully!`")
+    await dmod.edit("تم تنزيل من الاشراف بنجاح")
 
     # Announce to the logging group if we have demoted successfully
     if BOTLOG:
         await dmod.client.send_message(
-            BOTLOG_CHATID, "#DEMOTE\n"
+            BOTLOG_CHATID, "@IQTHON\n"
             f"USER: [{user.first_name}](tg://user?id={user.id})\n"
             f"CHAT: {dmod.chat.title}(`{dmod.chat_id}`)")
 
 
-@borg.on(admin_cmd(pattern="(ban|unban) ?(.*)", allow_sudo=True))
+@borg.on(admin_cmd(pattern="(حظر|لاحظر) ?(.*)", allow_sudo=True))
 async def _(event):
     # Space weirdness in regex required because argument is optional and other
     # commands start with ".unban"
@@ -221,9 +218,9 @@ async def _(event):
     to_ban_id = None
     rights = None
     input_cmd = event.pattern_match.group(1)
-    if input_cmd == "ban":
+    if input_cmd == "حظر":
         rights = BANNED_RIGHTS
-    elif input_cmd == "unban":
+    elif input_cmd == "لاحظر":
         rights = UNBAN_RIGHTS
     input_str = event.pattern_match.group(2)
     reply_msg_id = event.reply_to_msg_id
@@ -239,7 +236,7 @@ async def _(event):
     except (Exception) as exc:
         await event.edit(str(exc))
     else:
-        await event.edit(f"{input_cmd}ned Successfully!")
+        await event.edit(f"{input_cmd}تم بنجاح !")
 
 
 @borg.on(admin_cmd(pattern="pgs ?(.*)", allow_sudo=True))
@@ -272,7 +269,7 @@ async def _(event):
             await event.edit("**PURGE** Failed!")
 
 
-@borg.on(admin_cmd(pattern="(ban|unban) ?(.*)"))
+@borg.on(admin_cmd(pattern="(حظر|لاحظر) ?(.*)"))
 async def _(event):
     # Space weirdness in regex required because argument is optional and other
     # commands start with ".unban"
@@ -282,9 +279,9 @@ async def _(event):
     to_ban_id = None
     rights = None
     input_cmd = event.pattern_match.group(1)
-    if input_cmd == "ban":
+    if input_cmd == "حظر":
         rights = BANNED_RIGHTS
-    elif input_cmd == "unban":
+    elif input_cmd == "لاحظر":
         rights = UNBAN_RIGHTS
     input_str = event.pattern_match.group(2)
     reply_msg_id = event.reply_to_msg_id
@@ -300,7 +297,7 @@ async def _(event):
     except (Exception) as exc:
         await event.edit(str(exc))
     else:
-        await event.edit(f"{input_cmd}ned Successfully!")
+        await event.edit(f"{input_cmd}ned تم بنجاح!")
 
 
 @register(incoming=True)
@@ -382,13 +379,13 @@ async def promote(promt):
             f"CHAT: {promt.chat.title}(`{promt.chat_id}`)")
 
 
-@register(outgoing=True, pattern="^.admins$")
+@register(outgoing=True, pattern="^.لسته الادمنيه$")
 @errors_handler
 async def get_admin(show):
     """ For .admins command, list all of the admins of the chat. """
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
-    mentions = f'<b>Admins in {title}:</b> \n'
+    mentions = f'<b>الادمنيه {title}:</b> \n'
     try:
         async for user in show.client.iter_participants(
                 show.chat_id, filter=ChannelParticipantsAdmins):
@@ -397,7 +394,7 @@ async def get_admin(show):
                 userid = f"<code>{user.id}</code>"
                 mentions += f"\n{link} {userid}"
             else:
-                mentions += f"\nDeleted Account <code>{user.id}</code>"
+                mentions += f"\nحساب محذوف  <code>{user.id}</code>"
     except ChatAdminRequiredError as err:
         mentions += " " + str(err) + "\n"
     await show.edit(mentions, parse_mode="html")
@@ -449,7 +446,7 @@ async def pin(msg):
             f"LOUD: {not is_silent}")
 
 
-@register(outgoing=True, pattern="^.kick(?: |$)(.*)")
+@register(outgoing=True, pattern="^.تقيد(?: |$)(.*)")
 @errors_handler
 async def kick(usr):
     """ For .kick command, kicks the replied/tagged person from the group. """
@@ -465,10 +462,10 @@ async def kick(usr):
 
     user, reason = await get_user_from_event(usr)
     if not user:
-        await usr.edit("`Couldn't fetch user.`")
+        await usr.edit("`لايوجد يوزر.`")
         return
 
-    await usr.edit("`Kicking...`")
+    await usr.edit("جاري التقيد...`")
 
     try:
         await usr.client.kick_participant(usr.chat_id, user.id)
@@ -479,20 +476,20 @@ async def kick(usr):
 
     if reason:
         await usr.edit(
-            f"`Kicked` [{user.first_name}](tg://user?id={user.id})`!`\nReason: {reason}"
+            f"`تقيد` [{user.first_name}](tg://user?id={user.id})`!`\nReason: {reason}"
         )
     else:
         await usr.edit(
-            f"`Kicked` [{user.first_name}](tg://user?id={user.id})`!`")
+            f"`تقيد` [{user.first_name}](tg://user?id={user.id})`!`")
 
     if BOTLOG:
         await usr.client.send_message(
             BOTLOG_CHATID, "#KICK\n"
-            f"USER: [{user.first_name}](tg://user?id={user.id})\n"
-            f"CHAT: {usr.chat.title}(`{usr.chat_id}`)\n")
+            f"يوزر: [{user.first_name}](tg://user?id={user.id})\n"
+            f"محادثه: {usr.chat.title}(`{usr.chat_id}`)\n")
 
 
-@register(outgoing=True, pattern="^.users ?(.*)")
+@register(outgoing=True, pattern="^.ملف معرفات ?(.*)")
 @errors_handler
 async def get_users(show):
     """ For .users command, list all of the users in a chat. """
@@ -505,7 +502,7 @@ async def get_users(show):
                 if not user.deleted:
                     mentions += f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
                 else:
-                    mentions += f"\nDeleted Account `{user.id}`"
+                    mentions += f"\nحسابات محذوفه `{user.id}`"
         else:
             searchq = show.pattern_match.group(1)
             async for user in show.client.iter_participants(
@@ -513,21 +510,21 @@ async def get_users(show):
                 if not user.deleted:
                     mentions += f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
                 else:
-                    mentions += f"\nDeleted Account `{user.id}`"
+                    mentions += f"\nحسابات محذوفه `{user.id}`"
     except ChatAdminRequiredError as err:
         mentions += " " + str(err) + "\n"
     try:
         await show.edit(mentions)
     except MessageTooLongError:
         await show.edit(
-            "Damn, this is a huge group. Uploading users lists as file.")
+            "هذا المجموعه ضخمه سوف ارسل اليك ملف افضل.")
         file = open("userslist.txt", "w+")
         file.write(mentions)
         file.close()
         await show.client.send_file(
             show.chat_id,
             "userslist.txt",
-            caption='Users in {}'.format(title),
+            caption='المعرفات {}'.format(title),
             reply_to=show.id,
         )
         remove("userslist.txt")
@@ -550,7 +547,7 @@ async def get_user_from_event(event):
             user = int(user)
 
         if not user:
-            await event.edit("`Pass the user's username, id or reply!`")
+            await event.edit("مرر اسم المستخدم او المعرف او الرد!`")
             return
 
         if event.message.entities is not None:
