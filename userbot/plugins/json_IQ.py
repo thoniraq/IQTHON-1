@@ -1,11 +1,11 @@
 """Get Detailed info about any message
-Syntax: .json"""
+Syntax: .معلومات الرساله"""
 from telethon import events
 import io
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("json"))
+@borg.on(admin_cmd("معلومات الرساله"))
 async def _(event):
     if event.fwd_from:
         return
@@ -30,4 +30,4 @@ async def _(event):
             )
             await event.delete()
     else:
-        await event.edit("`{}`".format(the_real_message))
+        await event.edit("@iqthon`{}`".format(the_real_message))
