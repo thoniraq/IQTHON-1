@@ -1,11 +1,10 @@
-# For @UniBorg
-# (c) Shrimadhav U K
+# @IQTHON AND DAV @KLANR C
 
 from telethon import events, functions, types
 import asyncio
 
 
-@borg.on(events.NewMessage(pattern=r"\-listmyusernames", outgoing=True))
+@borg.on(events.NewMessage(pattern=r"\.معرفاتي", outgoing=True))
 async def _(event):
     if event.fwd_from:
         return
