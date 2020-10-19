@@ -1,15 +1,15 @@
 """Get Administrators of any Chat*
-Syntax: .get_admin"""
+Syntax: .تاك الادمنيه"""
 from telethon import events
 from telethon.tl.types import ChannelParticipantsAdmins, ChannelParticipantAdmin, ChannelParticipantCreator
 from userbot.utils import admin_cmd
 
 
-@borg.on(admin_cmd("تاك الادمنيه?(m)in ?(.*)"))
+@borg.on(admin_cmd("تاك الادمنيه"))
 async def _(event):
     if event.fwd_from:
         return
-    mentions = "**Admins in this Channel**: \n"
+    mentions = "**ادمنيه المجموعه هم**: @IQTHON \n"
     should_mention_admins = False
     reply_message = None
     pattern_match_str = event.pattern_match.group(1)
@@ -23,7 +23,7 @@ async def _(event):
     if not input_str:
         chat = to_write_chat
     else:
-        mentions_heading = "الادمنيه {} channel: \n".format(input_str)
+        mentions_heading = "الادمنيه {} المجموعه: \n".format(input_str)
         mentions = mentions_heading
         try:
             chat = await borg.get_entity(input_str)
@@ -34,12 +34,12 @@ async def _(event):
         async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
             if not x.deleted:
                 if isinstance(x.participant, ChannelParticipantCreator):
-                    mentions += "\n 👑 [{}](tg://user?id={}) `{}`".format(x.first_name, x.id, x.id)
+                    mentions += "\n 🇮🇶🕷 [{}](tg://user?id={}) `{}`".format(x.first_name, x.id, x.id)
         mentions += "\n"
         async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
             if not x.deleted:
                 if isinstance(x.participant, ChannelParticipantAdmin):
-                    mentions += "\n ⚜️ [{}](tg://user?id={}) `{}`".format(x.first_name, x.id, x.id)
+                    mentions += "\n 🇮🇶🕷 [{}](tg://user?id={}) `{}`".format(x.first_name, x.id, x.id)
             else:
                 mentions += "\n `{}`".format(x.id)
     except Exception as e:
