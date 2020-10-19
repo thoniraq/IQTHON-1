@@ -1,5 +1,4 @@
-# Copyright (C) 2020 Adek Maulana.
-# All rights reserved.
+# @IQTHON AND DAV @KLANR Cserved.
 """
    Heroku manager for your userbot
 """
