@@ -82,7 +82,7 @@ async def download_video(v_url):
     url = v_url.pattern_match.group(2)
     type = v_url.pattern_match.group(1).lower()
 
-    await v_url.edit("جاري التنزيل ..")
+    await v_url.edit("**⌔︙ جـاري تنزيل … ▶️**")
 
     if type == "ص":
         opts = {
@@ -144,41 +144,41 @@ async def download_video(v_url):
         video = True
 
     try:
-        await v_url.edit("يرجى الانتضار")
+        await v_url.edit("**⌔︙ يرجى الانتظار  🚸**")
         with YoutubeDL(opts) as ytdl:
             ytdl_data = ytdl.extract_info(url)
     except DownloadError as DE:
         await v_url.edit(f"`{str(DE)}`")
         return
     except ContentTooShortError:
-        await v_url.edit("محتوى التنزيل قصير جدا")
+        await v_url.edit("**⌔︙ محتوى تنزيل قصير جدا  ✨**")
         return
     except GeoRestrictedError:
         await v_url.edit(
-            "الفيديو غير متاح من موقعك الجغرافي بسبب القيود الجغرافية التي يفرضها موقع الويب."
+            "**⌔︙ الفديو غير متاح في موقعك جغرافي ⚠️.**"
         )
         return
     except MaxDownloadsReached:
-        await v_url.edit("تم وصول الحد الاقصى للتنزيلات")
+        await v_url.edit("**⌔︙ وصول الحد الاقصى للتنزيل ⛔️**")
         return
     except PostProcessingError:
-        await v_url.edit("حدث خطا اثناء المعالجه")
+        await v_url.edit("**⌔︙ حدث خطأ اثناء معالجه ⚠️**")
         return
     except UnavailableVideoError:
-        await v_url.edit("الوسائط غير متوفره بتنسيق المطلوب")
+        await v_url.edit("**⌔︙ عزيزي الدقه المطلوبه غير متوفره ⚠️**")
         return
     except XAttrMetadataError as XAME:
         await v_url.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
         return
     except ExtractorError:
-        await v_url.edit("حدث خطا اثناء استخراج معلومات")
+        await v_url.edit("**⌔︙ حدث خطأ اثناء استخراج ⚠️**")
         return
     except Exception as e:
         await v_url.edit(f"{str(type(e)): {str(e)}}")
         return
     c_time = time.time()
     if song:
-        await v_url.edit(f"نستعد لتحميل الاغنيه:`\
+        await v_url.edit(f"**⌔︙ حسنا استعد لتنزيل الاغنيه 🔄**:`\
         \n**{ytdl_data['title']}**\
         \nby *{ytdl_data['uploader']}*")
         await v_url.client.send_file(
@@ -197,7 +197,7 @@ async def download_video(v_url):
         os.remove(f"{ytdl_data['id']}.mp3")
         await v_url.delete()
     elif video:
-        await v_url.edit(f"نستعد لتنزيل الفديو:`\
+        await v_url.edit(f"**⌔︙ حسنا استعد لتنزيل الفديو 🔄**:`\
         \n**{ytdl_data['title']}**\
         \nby *{ytdl_data['uploader']}*")
         await v_url.client.send_file(
