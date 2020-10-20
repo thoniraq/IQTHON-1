@@ -16,7 +16,7 @@ async def _(event):
     if input_str in (("بوتات", "تعليق", "ايميل", "توجيه", "رابط")):
         update_lock(peer_id, input_str, True)
         await event.edit(
-            "Locked {}".format(input_str)
+            "⌔︙تم قفل بنجاح ( من الحساب )   ✅ {}".format(input_str)
         )
     else:
         msg = None
@@ -75,7 +75,7 @@ async def _(event):
             await event.edit(str(e))
         else:
             await event.edit(
-                "تم القفل من صلاحيات المجموعه بنجاح"
+                "⌔︙تم قفل بنجاح ( من المجموعه )   ✅"
             )
 
 
@@ -92,7 +92,7 @@ async def _(event):
         )
     else:
         await event.edit(
-            "تم فتح القفل بنجاح"
+            "⌔︙تم فتح القفل بنجاح   ✅"
         )
 
 
@@ -103,31 +103,31 @@ async def _(event):
     res = ""
     current_db_locks = get_locks(event.chat_id)
     if not current_db_locks:
-        res = "لاتوجد اقفال من قبل حسابك شخصي في هل مجموعه"
+        res = "⌔︙لاتوجد اي اقفال من قبل حسابك الشخصي  🚫"
     else:
-        res = "🕷🇮🇶انت قافل من حسابك الشخصي: \n"
-        res += "🕷🇮🇶 بوتات : `{}`\n".format(current_db_locks.bots)
-        res += "🕷🇮🇶 تعليقات : `{}`\n".format(current_db_locks.commands)
-        res += "🕷🇮🇶 ايميل : `{}`\n".format(current_db_locks.email)
-        res += "🕷🇮🇶 توجيه : `{}`\n".format(current_db_locks.forward)
-        res += "🕷🇮🇶 روابط : `{}`\n".format(current_db_locks.url)
+        res = "⌔︙لقد قفلت من حسابك شخصي عدة صلاحيات وهيه 🚸: \n"
+        res += "⌔︙ بوتات : `{}`\n".format(current_db_locks.bots)
+        res += "⌔︙ تعليقات : `{}`\n".format(current_db_locks.commands)
+        res += "⌔︙ ايميل : `{}`\n".format(current_db_locks.email)
+        res += "⌔︙ توجيه : `{}`\n".format(current_db_locks.forward)
+        res += "⌔︙ روابط : `{}`\n".format(current_db_locks.url)
     current_chat = await event.get_chat()
     try:
         current_api_locks = current_chat.default_banned_rights
     except AttributeError as e:
         logger.info(str(e))
     else:
-        res += "🕷🇮🇶صلاحيات المجموعه للارسال: \n"
-        res += "🕷🇮🇶 الرسائل : `{}`\n".format(current_api_locks.send_messages)
-        res += "🕷🇮🇶 ميديا : `{}`\n".format(current_api_locks.send_media)
-        res += "🕷🇮🇶 ملصقات: `{}`\n".format(current_api_locks.send_stickers)
-        res += "🕷🇮🇶 متحركات : `{}`\n".format(current_api_locks.send_gifs)
-        res += "🕷🇮🇶 العاب : `{}`\n".format(current_api_locks.send_games)
-        res += "🕷🇮🇶 الانلاين : `{}`\n".format(current_api_locks.send_inline)
-        res += "🕷🇮🇶 الجميع : `{}`\n".format(current_api_locks.send_polls)
-        res += "🕷🇮🇶 اضافه : `{}`\n".format(current_api_locks.invite_users)
-        res += "🕷🇮🇶 التثبيت : `{}`\n".format(current_api_locks.pin_messages)
-        res += "🕷🇮🇶 معلومات : `{}`\n".format(current_api_locks.change_info)
+        res += "⌔︙صلاحيات المجموعه هيه 🔰: \n"
+        res += "⌔︙ الرسائل : `{}`\n".format(current_api_locks.send_messages)
+        res += "⌔︙ ميديا : `{}`\n".format(current_api_locks.send_media)
+        res += "⌔︙ ملصقات: `{}`\n".format(current_api_locks.send_stickers)
+        res += "⌔︙ متحركات : `{}`\n".format(current_api_locks.send_gifs)
+        res += "⌔︙ العاب : `{}`\n".format(current_api_locks.send_games)
+        res += "⌔︙ الانلاين : `{}`\n".format(current_api_locks.send_inline)
+        res += "⌔︙ الجميع : `{}`\n".format(current_api_locks.send_polls)
+        res += "⌔︙ اضافه : `{}`\n".format(current_api_locks.invite_users)
+        res += "⌔︙ التثبيت : `{}`\n".format(current_api_locks.pin_messages)
+        res += "⌔︙ معلومات : `{}`\n".format(current_api_locks.change_info)
     await event.edit(res)
 
 
@@ -148,7 +148,7 @@ async def check_incoming_messages(event):
                 await event.delete()
             except Exception as e:
                 await event.reply(
-                    "لايمكنني ليس لدي اذن ادمن هنا. \n`{}`".format(str(e))
+                    "⌔︙لايمكنني ليس لدي صلاحيه مسؤل هنا  🚫. \n`{}`".format(str(e))
                 )
                 update_lock(peer_id, "تعليق", False)
     if is_locked(peer_id, "توجيه"):
@@ -157,7 +157,7 @@ async def check_incoming_messages(event):
                 await event.delete()
             except Exception as e:
                 await event.reply(
-                    "لايمكنني ليس لدي اذن ادمن هنا. \n`{}`".format(str(e))
+                    "⌔︙لايمكنني ليس لدي صلاحيه مسؤل هنا  🚫. \n`{}`".format(str(e))
                 )
                 update_lock(peer_id, "توجيه", False)
     if is_locked(peer_id, "ايميل"):
@@ -172,7 +172,7 @@ async def check_incoming_messages(event):
                 await event.delete()
             except Exception as e:
                 await event.reply(
-                    "ليس لدي اذن ادمن هنا. \n`{}`".format(str(e))
+                    "⌔︙لايمكنني ليس لدي صلاحيه مسؤل هنا  🚫. \n`{}`".format(str(e))
                 )
                 update_lock(peer_id, "ايميل", False)
     if is_locked(peer_id, "رابط"):
@@ -187,7 +187,7 @@ async def check_incoming_messages(event):
                 await event.delete()
             except Exception as e:
                 await event.reply(
-                    "ليس لدي ادمن هنا. \n`{}`".format(str(e))
+                    "⌔︙لايمكنني ليس لدي صلاحيه مسؤل هنا  🚫. \n`{}`".format(str(e))
                 )
                 update_lock(peer_id, "رابط", False)
 
@@ -219,11 +219,11 @@ async def _(event):
                         ))
                     except Exception as e:
                         await event.reply(
-                            "ليس لدي اذن ادمن هنا. \n`{}`".format(str(e))
+                            "⌔︙لايمكنني ليس لدي صلاحيه مسؤل هنا  🚫. \n`{}`".format(str(e))
                         )
                         update_lock(event.chat_id, "بوتات", False)
                         break
             if Config.G_BAN_LOGGER_GROUP is not None and is_ban_able:
                 ban_reason_msg = await event.reply(
-                    "!البوتات [user](tg://user?id={}) الرجاء عدم اضافه بوتات هنا.".format(users_added_by)
+                    " [user](tg://user?id={}) ⌔︙الرجاء عدم اضافه بوتات ( Bots ) هنا ⛔️.".format(users_added_by)
                 )
