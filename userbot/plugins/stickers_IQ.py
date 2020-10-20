@@ -38,7 +38,7 @@ async def _(event):
     if event.fwd_from:
         return
     if not event.is_reply:
-        await event.edit("الرد على الصوره لتحويل ملصق @iqthon")
+        await event.edit("⌔︙عزيزي الرد على صوره لتحويلها ملصق ↪️")
         return
     reply_message = await event.get_reply_message()
     sticker_emoji = "🔥"
@@ -53,7 +53,7 @@ async def _(event):
     userid = event.from_id
     packname = f"{user.first_name}'s @iqthon Vol.{pack}"
     packshortname = f"vol_{pack}_with_{userid}"
-    await event.edit("غضون ثواني")
+    await event.edit("⌔︙في غضون ثواني 2️⃣")
 
     is_a_s = is_it_animated_sticker(reply_message)
     file_ext_ns_ion = "Anubis69_roxx.png"
@@ -81,7 +81,7 @@ async def _(event):
         now = datetime.datetime.now()
         dt = now + datetime.timedelta(minutes=1)
         if not await stickerset_exists(bot_conv, packshortname):
-            await event.edit("عبوه جديده")
+            await event.edit("⌔︙حزمه جديده ♻️")
             await silently_send_message(bot_conv, "/cancel")
             if is_a_s:
                 response = await silently_send_message(bot_conv, "/newanimated")
@@ -111,10 +111,10 @@ async def _(event):
             response = await silently_send_message(bot_conv, f"<{packname}>")
             await silently_send_message(bot_conv, "/skip")
             response = await silently_send_message(bot_conv, packshortname)
-            if response.text == "عذرا هذا الاسم المختصر ماخوذ":
+            if response.text == "⌔︙اعتذر الاسم مستعمل 🚫":
                 await event.edit(f"**فشل**! @Stickers الرد: {response.text}")
                 return
-            elif response.text == "عذرا هذا الاسم غير مقبول.":
+            elif response.text == "⌔︙اعتذر الاسم غير مقبول 🚫":
                 packshortname = f"pack_{pack}_animated_{user.id}"
                 await silently_send_message(bot_conv, packshortname)
         else:
@@ -163,10 +163,10 @@ async def _(event):
                         response = await silently_send_message(bot_conv, f"<{packname}>")
                         await silently_send_message(bot_conv, "/skip")
                         response = await silently_send_message(bot_conv, packshortname)
-                        if response.text == "اسف الاسم مستعمل":
+                        if response.text == "⌔︙اعتذر الاسم مستعمل 🚫":
                             await event.edit(f"**فشل**! @Stickers الرد: {response.text}")
                             return
-                        elif response.text == "اسف الاسم غير مقبول":
+                        elif response.text == "⌔︙اعتذر الاسم غير مقبول 🚫":
                             packshortname = f"pack_{pack}_animated_{user.id}"
                             await silently_send_message(bot_conv, packshortname)
                     else:
@@ -192,26 +192,24 @@ async def _(event):
                 await silently_send_message(bot_conv, sticker_emoji)
                 await silently_send_message(bot_conv, "/done")
 
-
-    await event.edit(f"تم صنع ملصقك لايجاده هنا` [this place](t.me/addstickers/{packshortname}), pack{pack}"
-                     f" `by` {DEFAULTUSER}\n-@iraqthon")
-
+await event.edit(f"**عزيزي تم صنع ملصق الخااص بك هنا**  [this place](t.me/addstickers/{packshortname}), pack{pack}"
+                     f" `by` {DEFAULTUSER}\n**@IQTHON**")
 
 @borg.on(admin_cmd(pattern="معلومات ملصق"))
 async def _(event):
     if event.fwd_from:
         return
     if not event.is_reply:
-        await event.edit("الرد على الملصق لجلب المعلومات")
+        await event.edit("**⌔︙الرد على الملصق لجلب المعلومات ⚠️**")
         return
     rep_msg = await event.get_reply_message()
     if not rep_msg.document:
-        await event.edit("قم برد على اي ملصق للحصول على معلوماته")
+        await event.edit("**⌔︙قم برد على اي ملصق للحصول على معلوماته ⚠️**")
         return
     stickerset_attr_s = rep_msg.document.attributes
     stickerset_attr = find_instance(stickerset_attr_s, DocumentAttributeSticker)
     if not stickerset_attr.stickerset:
-        await event.edit("ملصق لاينتمي للحزمه")
+        await event.edit("**⌔︙ملصق لاينتمي للحزمه خاصه بك 🚫**")
         return
     get_stickerset = await borg(
         GetStickerSetRequest(
@@ -225,13 +223,13 @@ async def _(event):
     for document_sticker in get_stickerset.packs:
         if document_sticker.emoticon not in pack_emojis:
             pack_emojis.append(document_sticker.emoticon)
-    await event.edit(f"**Sticker Title:** `{get_stickerset.set.title}\n`"
-                     f"**Sticker Short Name:** `{get_stickerset.set.short_name}`\n"
-                     f"**Official:** `{get_stickerset.set.official}`\n"
-                     f"**Archived:** `{get_stickerset.set.archived}`\n"
-                     f"**Stickers In Pack:** `{len(get_stickerset.packs)}`\n"
-                     f"**Emojis In Pack:** {' '.join(pack_emojis)}"
-                     f"**ch iraq thon : @iqthon")
+    await event.edit(f"**⌔︙عنوان الملصق ❔:** `{get_stickerset.set.title}\n`"
+                     f"**⌔︙اسم الملصق 🔹:** `{get_stickerset.set.short_name}`\n"
+                     f"**⌔︙الرسمي ☢️:** `{get_stickerset.set.official}`\n"
+                     f"**⌔︙المؤرشف ⚠️:** `{get_stickerset.set.archived}`\n"
+                     f"**⌔︙ملصقات الحزمه 🔰:** `{len(get_stickerset.packs)}`\n"
+                     f"**⌔︙ايموجي الحزمه 🔆:** {' '.join(pack_emojis)}"
+                     f"**⌔︙CH : @IQTHON ⚜️**")
 
 
 @borg.on(admin_cmd(pattern="ملف الملصق ?(.*)"))
@@ -285,12 +283,12 @@ async def _(event):
                 return_when=asyncio.FIRST_COMPLETED)
             try:
                 await event.edit(
-                    f"تحميل {num_tasks - len(pending_tasks)}/{sticker_set.set.count}")
+                    f"⌔︙تحميل ♻️ {num_tasks - len(pending_tasks)}/{sticker_set.set.count}")
             except MessageNotModifiedError:
                 pass
             if not pending_tasks:
                 break
-        await event.edit("اكتمل التنزيل")
+/        await event.edit("⌔︙اكتمل تنزيل ❇️")
      
         directory_name = Config.TMP_DOWNLOAD_DIRECTORY + sticker_set.set.short_name
         zipf = zipfile.ZipFile(directory_name + ".zip", "w", zipfile.ZIP_DEFLATED)
@@ -310,11 +308,11 @@ async def _(event):
             os.remove(directory_name)
         except:
             pass
-        await event.edit("تمت المهمه")
+        await event.edit("⌔︙تمت المهمه ✅")
         await asyncio.sleep(3)
         await event.delete()
     else:
-        await event.edit("هناك خطا لديك")
+        await event.edit("⌔︙ هناك خطأ لديك ⛔️")
 
 
 # Helpers
