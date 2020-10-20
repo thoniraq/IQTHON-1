@@ -1,7 +1,5 @@
 #"""@iqthon iraq ©
 """ command: .unzip
-coded by @By_Azade
-code rewritten my SnapDragon7410
 """
 import asyncio
 import os
@@ -27,9 +25,9 @@ async def _(event):
     if event.fwd_from:
         return
     if not event.is_reply:
-        await event.edit("رد على الملف لتضغطه")
+        await event.edit("**⌔︙ اعمل رد للملف لضغطه ⚠️**")
         return
-    mone = await event.edit("جاري...")
+    mone = await event.edit("**⌔︙ جـاري … ♻️**")
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if event.reply_to_msg_id:
@@ -68,7 +66,7 @@ def zipdir(path, ziph):
 async def _(event):
     if event.fwd_from:
         return
-    mone = await event.edit("جاري...")
+    mone = await event.edit("**⌔︙ جـاري … ♻️**")
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if event.reply_to_msg_id:
@@ -117,7 +115,7 @@ async def _(event):
                 except Exception as e:
                     await bot.send_message(
                         event.chat_id,
-                        "{} caused `{}`".format(caption_rts, str(e)),
+                        "{} تسبب `{}`".format(caption_rts, str(e)),
                         reply_to=event.message.id
                     )
                     # some media were having some issues
