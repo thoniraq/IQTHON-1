@@ -57,11 +57,11 @@ async def _(event):
     if msg and msg.media:
         bot_api_file_id = pack_bot_file_id(msg.media)
         add_welcome_setting(event.chat_id, msg.message, True, 0, bot_api_file_id)
-        await event.edit("⌔︙تم حفض ترحيب بنجاح ✅")
+        await event.edit("**⌔︙تم حفض ترحيب بنجاح ✅**")
     else:
         input_str = event.text.split(None, 1)
         add_welcome_setting(event.chat_id, input_str[1], True, 0, None)
-        await event.edit("⌔︙تم حفض ترحيب بنجاح ✅")
+        await event.edit("**⌔︙تم حفض ترحيب بنجاح ✅**")
 
 
 @command(pattern="^.مسح ترحيب")  # pylint:disable=E0602
@@ -71,8 +71,8 @@ async def _(event):
     cws = get_current_welcome_settings(event.chat_id)
     rm_welcome_setting(event.chat_id)
     await event.edit(
-        "⌔︙تم حذف ترحيب بنجاح ✅" + \
-        "⌔︙رساله الترحيب السابقه هيه ↪️ `{}`.".format(cws.custom_welcome_message)
+        "**⌔︙تم حذف ترحيب بنجاح ✅**" + \
+        "**⌔︙رساله الترحيب السابقه هيه ↪️** `{}`.".format(cws.custom_welcome_message)
     )
 
 @command(pattern="^.لسته ترحيب")  # pylint:disable=E0602
@@ -82,10 +82,10 @@ async def _(event):
     cws = get_current_welcome_settings(event.chat_id)
     if hasattr(cws, 'custom_welcome_message'):
         await event.edit(
-            "⌔︙لايوجد لسته ترحيب 🚫" + \
-        "⌔︙ لسته ترحيب الخاصه بك ❔\n\n`{}`.".format(cws.custom_welcome_message)
+            "**⌔︙لايوجد لسته ترحيب 🚫**" + \
+        "**⌔︙ لسته ترحيب الخاصه بك ❔**\n\n`{}`.".format(cws.custom_welcome_message)
     )
     else:
         await event.edit(
-            "⌔︙لايوجد لسته ترحيب 🚫"
+            "**⌔︙لايوجد لسته ترحيب 🚫**"
         )
