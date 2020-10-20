@@ -192,8 +192,8 @@ async def _(event):
                 await silently_send_message(bot_conv, sticker_emoji)
                 await silently_send_message(bot_conv, "/done")
 
-await event.edit(f"**عزيزي تم صنع ملصق الخااص بك هنا**  [this place](t.me/addstickers/{packshortname}), pack{pack}"
-                     f" `by` {DEFAULTUSER}\n**@IQTHON**")
+ await event.edit(f"**Kanged!** `This sticker has been stolen to` [this place](t.me/addstickers/{packshortname}), pack{pack}"
+                     f" `by` {DEFAULTUSER}\n**ᕦ(ò_óˇ)ᕤ**")
 
 @borg.on(admin_cmd(pattern="معلومات ملصق"))
 async def _(event):
