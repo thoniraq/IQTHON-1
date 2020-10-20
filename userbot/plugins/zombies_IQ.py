@@ -1,9 +1,8 @@
 #"""@iqthon iraq ©
-
-"""Cmd= `.المحذوفين`
+"""Cmd= `.zombie`
 Usage: Searches for deleted accounts in a groups and channels.
-Use .المحذوفين تنظيف to remove deleted accounts from the groups and channels.
-\nPorted by ©[klanr](t.me/klanr) and ©[iraqthon](t.me/tele_thon)"""
+Use .zombies clean to remove deleted accounts from the groups and channels.
+\nPorted by ©[NIKITA](t.me/kirito6969) and ©[EYEPATCH](t.me/NeoMatrix90)"""
 
 from telethon import events
 from userbot.utils import admin_cmd
@@ -63,19 +62,21 @@ async def rm_deletedacc(show):
 
     con = show.pattern_match.group(1).lower()
     del_u = 0
-    del_status = "**⌔︙ عزيزي لاتوجد حسابات محذوفه ⛔️**"
+    del_status = "⌔︙ عزيزي لاتوجد حسابات محذوفه ⛔️"
 
     if con != "clean":
-        await show.edit("**⌔︙ جـاري البـحث على حسابات محذوفـه  ♻️**")
+        await show.edit("⌔︙ جـاري بحث على حسابات المحذوفه  ♻️...")
         async for user in show.client.iter_participants(show.chat_id):
 
             if user.deleted:
                 del_u += 1
                 await sleep(1)
         if del_u > 0:
-            del_status = f"**⌔︙ لقـد وجدت 🔄 {del_u}** امـا في حاله اردت مسح المحذوفين قم بارسا`.المحذوفين clean` ⚠️**"
-      await show.edit(del_status)
+            del_status = f"لقد وجدت **{del_u}** حسابات المحذوفه,\
+            \nفي حاله اردت مسح المحذوفين قم بارسال.المحذوفين clean ⚠️"
+        await show.edit(del_status)
         return
+
     # Here laying the sanity check
     chat = await show.get_chat()
     admin = chat.admin_rights
@@ -83,10 +84,10 @@ async def rm_deletedacc(show):
 
     # Well
     if not admin and not creator:
-        await show.edit("**⌔︙ عزيزي انا لست ادمن هنا ⚠️**")
+        await show.edit("⌔︙ عزيزي انا لست ادمن هنا ⚠️")
         return
 
-    await show.edit("**⌔︙ يمكنني حذف الحسابات محذوفه من مجموعتك ♻️**")
+    await show.edit("⌔︙ يمكنني حذف الحسابات محذوفه من مجموعتك ♻️")
     del_u = 0
     del_a = 0
 
@@ -96,7 +97,7 @@ async def rm_deletedacc(show):
                 await show.client(
                     EditBannedRequest(show.chat_id, user.id, BANNED_RIGHTS))
             except ChatAdminRequiredError:
-                await show.edit("**⌔︙لايمكنني ليس لدي صلاحيه حظر 🚫**")
+                await show.edit("⌔︙لايمكنني ليس لدي صلاحيه حظر 🚫")
                 return
             except UserAdminInvalidError:
                 del_u -= 1
@@ -107,11 +108,11 @@ async def rm_deletedacc(show):
 
 
     if del_u > 0:
-        del_status = f"**تم الازالـه ♻️ {del_u} حسابات المحذوفه 🚫**"
+        del_status = f"تم الازالـه ♻️ **{del_u}** حسابات المحذوفه 🚫"
 
     if del_a > 0:
-        del_status = f"**تم الازالـه ♻️ {del_u} حسابات المحذوفه 🚫 \
-        \n {del_a} لايمكني حذف الادمنيه ⚠️**"
+        del_status = f"تم الازالـه ♻️ **{del_u}** حسابات المحذوفه 🚫 \
+        \n**{del_a}** لايمكني حذف الادمنيه ⚠️"
 
 
     await show.edit(del_status)
@@ -122,5 +123,5 @@ async def rm_deletedacc(show):
     if Config.G_BAN_LOGGER_GROUP is not None:
         await show.client.send_message(
             Config.G_BAN_LOGGER_GROUP, "#CLEANUP\n"
-            f"تنظيف **{del_u}** حسابات المحذوفه 🚫 !!\
+            f"تم التنضيف ♻️ **{del_u}** حسابات المحذوفه 🚫 !!\
             \nالمحادثه: {show.chat.title}(`{show.chat_id}`)")
