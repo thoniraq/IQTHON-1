@@ -63,20 +63,19 @@ async def rm_deletedacc(show):
 
     con = show.pattern_match.group(1).lower()
     del_u = 0
-    del_status = "لايوجد محذوفين"
+    del_status = "**⌔︙ عزيزي لاتوجد حسابات محذوفه ⛔️**"
 
     if con != "clean":
-        await show.edit("جاري بحث على حسابات محذوفه ...")
+        await show.edit("**⌔︙ جـاري البـحث على حسابات محذوفـه  ♻️**")
         async for user in show.client.iter_participants(show.chat_id):
 
             if user.deleted:
                 del_u += 1
                 await sleep(1)
         if del_u > 0:
-            del_status = f"لقد وجدت **{del_u}** `clean في حاله اردت مسح المحذوفين ارسل `.المحذوفين"
-        await show.edit(del_status)
+            del_status = f"**⌔︙ لقـد وجدت 🔄 {del_u}** امـا في حاله اردت مسح المحذوفين قم بارسا`.المحذوفين clean` ⚠️**"
+      await show.edit(del_status)
         return
-
     # Here laying the sanity check
     chat = await show.get_chat()
     admin = chat.admin_rights
@@ -84,10 +83,10 @@ async def rm_deletedacc(show):
 
     # Well
     if not admin and not creator:
-        await show.edit("انا لست ادمن هنا")
+        await show.edit("**⌔︙ عزيزي انا لست ادمن هنا ⚠️**")
         return
 
-    await show.edit("حذف حسابات محذوفه هل يمكنني ذالك")
+    await show.edit("**⌔︙ يمكنني حذف الحسابات محذوفه من مجموعتك ♻️**")
     del_u = 0
     del_a = 0
 
@@ -97,7 +96,7 @@ async def rm_deletedacc(show):
                 await show.client(
                     EditBannedRequest(show.chat_id, user.id, BANNED_RIGHTS))
             except ChatAdminRequiredError:
-                await show.edit("لايمكنني ليس لدي صلاحيه حظر")
+                await show.edit("**⌔︙لايمكنني ليس لدي صلاحيه حظر 🚫**")
                 return
             except UserAdminInvalidError:
                 del_u -= 1
@@ -108,11 +107,11 @@ async def rm_deletedacc(show):
 
 
     if del_u > 0:
-        del_status = f"تم الازاله **{del_u}** حسابات محذوفه"
+        del_status = f"**تم الازالـه ♻️ {del_u} حسابات المحذوفه 🚫**"
 
     if del_a > 0:
-        del_status = f"تم الازاله **{del_u}** حسابات محذوفه \
-        \n**{del_a}** لايمكنني حذف الادمنيه"
+        del_status = f"**تم الازالـه ♻️ {del_u} حسابات المحذوفه 🚫 \
+        \n {del_a} لايمكني حذف الادمنيه ⚠️**"
 
 
     await show.edit(del_status)
@@ -123,6 +122,6 @@ async def rm_deletedacc(show):
     if Config.G_BAN_LOGGER_GROUP is not None:
         await show.client.send_message(
             Config.G_BAN_LOGGER_GROUP, "#تنظيف\n"
-            f"تم التنظيف **{del_u}** حسابات محذوفه !!\
-            \nمن الدردشه: {show.chat.title}(`{show.chat_id}`)")
+            f"**تم التنضيف ♻️ {del_u} حسابات المحذوفه 🚫 !!\
+            \nمن الدردشه 🚻: {show.chat.title}(`{show.chat_id}**)")
 
