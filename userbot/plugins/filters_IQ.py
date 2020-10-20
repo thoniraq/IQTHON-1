@@ -84,7 +84,7 @@ async def on_snip_save(event):
         add_filter(event.chat_id, name, snip['text'], snip['type'], snip.get('id'), snip.get('hash'), snip.get('fr'))
         await event.edit(f"filter {name} saved successfully. Get it with {name}")
     else:
-        await event.edit("-@iqthon قم برد على الكلمه التي تريد وضع رد عليها")
+        await event.edit("⌔︙اولا ارسل الكلمه ثم قم برد عليها بالامر + رد للـكـلمه ↪️")
 
 
 @command(pattern="^.لسته الردود$")
@@ -95,7 +95,7 @@ async def on_snip_list(event):
         for a_snip in all_snips:
             OUT_STR += f"👉 {a_snip.keyword} \n"
     else:
-        OUT_STR = "No Filters. Start Saving using `.savefilter`"
+        OUT_STR = "⌔︙لاتوجد ردود 🚫 . لاضافه رد استخدم امر ( .وضع رد )"
     if len(OUT_STR) > 4096:
         with io.BytesIO(str.encode(OUT_STR)) as out_file:
             out_file.name = "filters.text"
@@ -104,7 +104,7 @@ async def on_snip_list(event):
                 out_file,
                 force_document=True,
                 allow_cache=False,
-                caption="Available Filters in the Current Chat",
+                caption="⌔︙المرشحات المتاحه في الدردشه الحاليه ✅",
                 reply_to=event
             )
             await event.delete()
@@ -116,10 +116,10 @@ async def on_snip_list(event):
 async def on_snip_delete(event):
     name = event.pattern_match.group(1)
     remove_filter(event.chat_id, name)
-    await event.edit(f"-@iqthon الرد {name} تم حذف الرد")
+    await event.edit(f". {name} ⌔︙تم حذف الرد ✅")
 
 
 @command(pattern="^.مسح جميع ردود$")
 async def on_all_snip_delete(event):
     remove_all_filters(event.chat_id)
-    await event.edit(f"تم مسح جميع ردود")
+    await event.edit(f"⌔︙تم مسح جميع ردود ⛔️")
