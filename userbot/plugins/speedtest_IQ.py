@@ -22,7 +22,7 @@ async def _(event):
         as_document = True
     elif input_str == "text":
         as_text = True
-    await event.edit("حساب الانترنيت لديك انتضر رجاء")
+    await event.edit("⌔︙ جـاري حساب عمليه الانترنيت لديك  ♻️")
     start = datetime.now()
     s = speedtest.Speedtest()
     s.get_best_server()
@@ -44,29 +44,28 @@ async def _(event):
         response = s.results.share()
         speedtest_image = response
         if as_text:
-            await event.edit("""اكتمل سرعه الانترنيت {} ثواني`
-`@iqthon`
-`التحميل: {}`
-`الرفع: {}`
-`البنك: {}`
-`مزود خدمه الانترنيت: {}`
-`تقيم: {}`""".format(ms, convert_from_bytes(download_speed), convert_from_bytes(upload_speed), ping_time, i_s_p, i_s_p_rating))
+            await event.edit("""⌔︙اكتمل عمليه ✅ : {} لـثواني
+⌔︙**قنـاه عراق ثون** :  @IQTHON
+⌔︙**التحميل** ( Download ) : {}
+⌔︙**البنك** ( Ping ) : {}
+⌔︙ **مزود الخدمه** ( ISP ) : {}
+⌔︙ **التقيم**: {}""".format(ms, convert_from_bytes(download_speed), convert_from_bytes(upload_speed), ping_time, i_s_p, i_s_p_rating))
         else:
             await borg.send_file(
                 event.chat_id,
                 speedtest_image,
-                caption="**سرعه الانترنيت** اكتملت هنا {} ثواني".format(ms),
+                caption="⌔︙اكتمل عمليه ✅ : {} لـثواني".format(ms),
                 force_document=as_document,
                 reply_to=reply_msg_id,
                 allow_cache=False
             )
             await event.delete()
     except Exception as exc:
-        await event.edit("""**سرعه الانترنيت** اكتملت هنا {} ثواني
-تحميل: {}
-الرفع: {}
-البنك: {}
-@iqthon
+        await event.edit("""⌔︙اكتمل عمليه ✅ : {} لـثواني
+⌔︙**التحميل** ( Download ) : {}
+⌔︙**قنـاه عراق ثون** :  @IQTHON
+⌔︙**الرفع** ( upload ) : {}
+⌔︙**البنك** ( Ping ) : {}
 __الاخطاء التاليه__
 {}""".format(ms, convert_from_bytes(download_speed), convert_from_bytes(upload_speed), ping_time, str(exc)))
 
