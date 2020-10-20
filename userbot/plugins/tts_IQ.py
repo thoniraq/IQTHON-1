@@ -25,7 +25,7 @@ async def _(event):
     elif "|" in input_str:
         lan, text = input_str.split("|")
     else:
-        await event.edit("غير صالح")
+        await event.edit("⌔︙ غير صالح ⚠️")
         return
     text = text.strip()
     lan = lan.strip()
@@ -69,7 +69,7 @@ async def _(event):
             voice_note=True
         )
         os.remove(required_file_name)
-        await event.edit("Processed {} ({}) in {} seconds!".format(text[0:97], lan, ms))
+        await event.edit("⌔︙ جاري المعالجه 🔄 {} ({}) in {} خلال ثواني!".format(text[0:97], lan, ms))
         await asyncio.sleep(5)
         await event.delete()
     except Exception as e:
