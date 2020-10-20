@@ -24,7 +24,7 @@ async def _(event):
     elif "|" in input_str:
         lan, text = input_str.split("|")
     else:
-        await event.edit("اعمل رد للكلمه المراد ترجمتها")
+        await event.edit("**⌔︙ قم برد الى الكلمه المراد ترجمتها ⚠️**")
         return
     text = emoji.demojize(text.strip())
     lan = lan.strip()
@@ -33,7 +33,7 @@ async def _(event):
         translated = translator.translate(text, dest=lan)
         after_tr_text = translated.text
        
-        output_str = """**TRANSLATED** from {} to {}
+        output_str = """**الترجمه** من {} الى {}
 {}""".format(
             translated.src,
             lan,
