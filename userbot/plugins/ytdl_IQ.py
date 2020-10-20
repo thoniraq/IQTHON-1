@@ -76,7 +76,7 @@ def time_formatter(milliseconds: int) -> str:
         ((str(milliseconds) + " millisecond(s), ") if milliseconds else "")
     return tmp[:-2]
 
-@borg.on(admin_cmd(pattern=" تنزيل( صوت | فديو) (.*)"))
+@borg.on(admin_cmd(pattern=" تنزيل( صوت | فديو ) (.*)"))
 async def download_video(v_url):
     """ For .ytdl command, download media from YouTube and many other sites. """
     url = v_url.pattern_match.group(2)
@@ -84,7 +84,7 @@ async def download_video(v_url):
 
     await v_url.edit("**⌔︙ جـاري تنزيل … ▶️**")
 
-    if type == "ص":
+    if type == " صوت ":
         opts = {
             'format':
             'bestaudio',
@@ -115,7 +115,7 @@ async def download_video(v_url):
         video = False
         song = True
 
-    elif type == "ف":
+    elif type == " فديو ":
         opts = {
             'format':
             'best',
