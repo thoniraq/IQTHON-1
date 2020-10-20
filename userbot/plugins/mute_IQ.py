@@ -7,7 +7,7 @@ async def startmute(event):
     if event.fwd_from:
         return
     elif event.is_private:
-        await event.edit("قد تحدث اشياء خطيره")
+        await event.edit("⌔︙ حسنا عندما تريد الغاء الكتم ارسل (`.فتح كتم`) ♻️")
         await asyncio.sleep(3)
         private = True
     if any([x in event.raw_text for x in ("/mute", "!mute")]):
@@ -21,28 +21,28 @@ async def startmute(event):
         elif private is True:
             userid = event.chat_id
         else:
-            return await event.edit("يرجى الرد على المستخدم")
+            return await event.edit("⌔︙ يرجى الرد على المستخدم  🔹")
         chat_id = event.chat_id
         chat = await event.get_chat()
         if "admin_rights" in vars(chat) and vars(chat)["admin_rights"] is not None: 
             if chat.admin_rights.delete_messages is True:
                 pass
             else:
-                return await event.edit("`يجب ان تكون مشرف او لديك صلاحيه الحذف`")
+                return await event.edit("⌔︙يجب ان تكون مشرف او لديك صلاحيه الحذف ⚠️")
         elif "creator" in vars(chat):
             pass
         elif private == True:
             pass
         else:
-            return await event.edit("لايمكنك كتم بدون حقوق مسؤل")
+            return await event.edit("⌔︙يجب ان تكون مشرف او لديك صلاحيه الحذف ⚠️")
         if is_muted(userid, chat_id):
-            return await event.edit("بالفعل تم كتمه")
+            return await event.edit("⌔︙ بالفعل تم كتمـه ✅")
         try:
             mute(userid, chat_id)
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("تم كتمه بنجاح")
+            await event.edit("⌔︙ تم كتم المستخدم بنجاح ✅")
 
 @command(outgoing=True, pattern=r"^.فتح كتم ?(\d+)?")
 async def endmute(event):
@@ -50,7 +50,7 @@ async def endmute(event):
     if event.fwd_from:
         return
     elif event.is_private:
-        await event.edit("قد يحدث اشياء خطيره")
+        await event.edit("⌔︙ حسنا عندما تريد الغاء الكتم ارسل (`.فتح كتم`) ♻️")
         await asyncio.sleep(3)
         private = True
     if any([x in event.raw_text for x in ("/unmute", "!unmute")]):
@@ -64,16 +64,16 @@ async def endmute(event):
         elif private is True:
             userid = event.chat_id
         else:
-            return await event.edit("رجاء قم برد عليه او بالمعرف")
+            return await event.edit("⌔︙ يرجى الرد على المستخدم  🔹")
         chat_id = event.chat_id
         if not is_muted(userid, chat_id):
-            return await event.edit("ان هذا شخص غير مكتوم")
+            return await event.edit("⌔︙ ان هذا الشخص غير مكتوم  🚸")
         try:
             unmute(userid, chat_id)
         except Exception as e:
             await event.edit("Error occured!\nError is " + str(e))
         else:
-            await event.edit("تم فتح كتمه بنجاح")
+            await event.edit("⌔︙ تم فتح كتم المستخدم  ✅")
             
 
 @command(outgoing=True, pattern=r"^.mute ?(\d+)?", allow_sudo=True)
