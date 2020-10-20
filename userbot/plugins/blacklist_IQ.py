@@ -34,10 +34,10 @@ async def on_add_black_list(event):
     to_blacklist = list(set(trigger.strip() for trigger in text.split("\n") if trigger.strip()))
     for trigger in to_blacklist:
         sql.add_to_blacklist(event.chat_id, trigger.lower())
-    await event.edit("اضافه {} الى القائمه المحظوره".format(len(to_blacklist)))
+    await event.edit("⌔︙تمت الاضافه {} الى القائمه المحضورة 🚫".format(len(to_blacklist)))
 
 
-@borg.on(admin_cmd("لسته الكلمات المحظوره"))
+@borg.on(admin_cmd("قائمه الكلمات المحظوره"))
 async def on_view_blacklist(event):
     all_blacklisted = sql.get_chat_blacklist(event.chat_id)
     OUT_STR = "Blacklists in the Current Chat:\n"
@@ -45,7 +45,7 @@ async def on_view_blacklist(event):
         for trigger in all_blacklisted:
             OUT_STR += f"👉 {trigger} \n"
     else:
-        OUT_STR = "لاتوجد لسته محظوره `.حظر كلمه`"
+        OUT_STR = "⌔︙ عذرا لاتوجد كلمات كلمات محظورة 🚫"
     if len(OUT_STR) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(OUT_STR)) as out_file:
             out_file.name = "blacklist.text"
@@ -54,7 +54,7 @@ async def on_view_blacklist(event):
                 out_file,
                 force_document=True,
                 allow_cache=False,
-                caption="القائمه السوداء في دردشه الحاليه",
+                caption="⌔︙القائمه المحظوره في الدردشه الحاليه 🔃",
                 reply_to=event
             )
             await event.delete()
@@ -62,7 +62,7 @@ async def on_view_blacklist(event):
         await event.edit(OUT_STR)
 
 
-@borg.on(admin_cmd("امسح حظر ((.|\n)*)"))
+@borg.on(admin_cmd("مسح الحظر ((.|\n)*)"))
 async def on_delete_blacklist(event):
     text = event.pattern_match.group(1)
     to_unblacklist = list(set(trigger.strip() for trigger in text.split("\n") if trigger.strip()))
@@ -70,4 +70,4 @@ async def on_delete_blacklist(event):
     for trigger in to_unblacklist:
         if sql.rm_from_blacklist(event.chat_id, trigger.lower()):
             successful += 1
-    await event.edit(f"حذف {successful} / {len(to_unblacklist)} من قائمه سوداء")
+    await event.edit(f"⌔︙حذف كلمه {successful} / {len(to_unblacklist)} من قائمه المحظوره بنجاح ✅")
