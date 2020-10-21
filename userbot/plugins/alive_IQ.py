@@ -7,8 +7,7 @@ from platform import uname
 from userbot import ALIVE_NAME
 from userbot.utils import admin_cmd
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "IQTHON"
-CAT_IMG = Config.ALIVE_PIC
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "**No Name set yet.** [iqthon.](t.me/iqthon)"
 
 @command(outgoing=True, pattern="^.alive$")
 async def amireallyalive(alive):
