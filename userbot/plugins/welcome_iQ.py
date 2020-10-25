@@ -49,7 +49,7 @@ async def _(event):
             update_previous_welcome(event.chat_id, current_message.id)
 
 
-@command(pattern="^.اضف ترحيب")  # pylint:disable=E0602
+@command(pattern="^.ترحيب")  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
