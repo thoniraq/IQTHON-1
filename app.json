@@ -1,6 +1,6 @@
 {
   "name": "IQTHON",
-  "description": "bot iraq thon for iraqi and me ch @IQTHON and ma dav @klanr",
+  "description": "بوت عراق ثون قناتي @IQTHON مطور السورس @klanr",
   "logo": "https://telegra.ph/file/1fabd12aaedc567b1690c.jpg",
   "keywords": [
     "telegram",
@@ -14,7 +14,7 @@
   "success_url": "#TODO",
   "env": {
     "ENV": {
-      "description": "Setting this to ANYTHING will enable heroku.",
+      "description": "ضع هنا كود تيرمكس ايضا",
       "value": "ANYTHING"
     },
     "TEMP_DOWNLOAD_DIRECTORY": {
@@ -23,19 +23,19 @@
       "required": false
     },
     "APP_ID": {
-      "description": "Get this value from my.telegram.org! Please do not steal",
+      "description": "ضع هنا الايبي ايدي",
       "value": ""
     },
     "API_HASH": {
-      "description": "Get this value from my.telegram.org! Please do not steal",
+      "description": "ضع هنا الايبي هاش",
       "value": ""
     },
     "STRING_SESSION": {
-      "description": "Get this value by running python3 telesetup.py locally",
+      "description": "ضع هنا كود تيرمكس ايضا",
       "value": ""
     },
     "TG_BOT_TOKEN_BF_HER": {
-      "description": "Needed for inline buttons maker. Make a bot at http://telegram.dog/BotFather and get the token of your bot.Worth it. Get it.",
+      "description": "ضع هنا توكن بوتك",
       "value": "",
       "required": false
     },
@@ -50,12 +50,12 @@
       "required": false
     },
     "TG_BOT_USER_NAME_BF_HER": {
-      "description": "Needed for inline buttons maker. Make a bot at http://telegram.dog/BotFather and get the username of your bot",
+      "description": "ضع هنا معرف بوتك بدون @",
       "value": "",
       "required": false
     },
     "ALIVE_NAME": {
-      "description": "give your name",
+      "description": "لاتغير منه احذر",
       "value": "@iraqthon"
     },
     "TZ": {
