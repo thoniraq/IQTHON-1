@@ -34,11 +34,6 @@
       "description": "Get this value by running python3 telesetup.py locally",
       "value": ""
     },
-    "OCR_SPACE_API_KEY": {
-      "description": "Required for OCR functionality. Get from https://ocr.space/ocrapi",
-      "value": "",
-      "required": false
-    },
     "TG_BOT_TOKEN_BF_HER": {
       "description": "Needed for inline buttons maker. Make a bot at http://telegram.dog/BotFather and get the token of your bot.Worth it. Get it.",
       "value": "",
@@ -62,16 +57,6 @@
     "ALIVE_NAME": {
       "description": "give your name",
       "value": "@iraqthon"
-    },
-      "HEROKU_API_KEY": {
-      "description": "Required for updating the bot and other stuff get it from https://dashboard.heroku.com/account",
-      "value": "",
-      "required": false
-    },
-    "ALIVE_PIC": {
-      "description": "the pic that to show in your alive message url.",
-      "value": "https://telegra.ph/file/1fabd12aaedc567b1690c.jpg",
-      "required": false
     },
     "TZ": {
       "description": "Required for Correct Time on autopic/get time. Know your timezone from http://www.timezoneconverter.com/cgi-bin/findzone.tzc",
