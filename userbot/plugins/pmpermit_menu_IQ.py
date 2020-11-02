@@ -23,17 +23,17 @@ async def _(event):
             return
         if event.is_private:
          Nudas = ("ذكر الجنسيه.__\n"
-                  "`1`. @IQTHON\n"
-                  "`2`. @IQTHON\n"
-                  "`3`. @IQTHON\n")
-         PM = ("قائمه اعدادت عراق ثون لحمايه الرسائل المزعجه-🕷🇮🇶"
-               f"{DEFAULTUSER}.\n"
-               "في حاله تكرار الرسائل سوف تنحظر-🕷🇮🇶\n"
-               "ارسل الرقم بدون تكرار !!-🕷🇮🇶\n"
-               "`1`. اريد المراسله-🕷🇮🇶\n"
-               "`2`. قناه عراق ثون-🕷🇮🇶\n"
-               "`3`.ريبو عراق ثون-🕷🇮🇶\n"
-               "`4`. بوت اوامر عراق ثون-🕷🇮🇶\n")
+                  "`1`. ⌔︙🕷🇮🇶Source Iraq Channel @IQTHON\n"
+                  "`2`. ⌔︙🕷🇮🇶Principal developer: @klanr\n"
+                  "`3`. ⌔︙🕷🇮🇶BOT commands Iraq Thon @iraqthonbot\n")
+         PM = ("⌔︙🕷🇮🇶Welcome to Source Iraq"
+            f"{DEFAULTUSER}.\n"
+            "⌔︙🕷🇮🇶Source Iraq Channel @IQTHON\n"
+            "⌔︙🕷🇮🇶Principal developer: @klanr\n"
+            "⌔︙🕷🇮🇶Never repeat here\n"
+            "⌔︙🕷🇮🇶Email the person now\n"
+            "⌔︙🕷🇮🇶BOT commands Iraq Thon @iraqthonbot\n"
+            "⌔︙🕷🇮🇶In case here is a problem, send .restart\n")
          ONE = ("حسنا ارسل رسالتك كامله عند الفراغ ارد عليك")
          TWO = ("@IQTHON")
          THREE = ("https://github.com/klanrali/IQTHON")
