@@ -15,6 +15,7 @@ async def amireallyalive(alive):
     await alive.edit("⌔︙🕷🇮🇶 IRAQTHON\n"
                      "⌔︙🕷🇮🇶 Version: 1.0.0\n"
                      # Don't change this else you a TikTok loser, Son of Jinping. Add your own.
-                      "⌔︙🕷🇮🇶 Created By: [KLANR](tg://user?id=1094825801) || [CH IQ](https://t.me/IQTHON)\n"
+                     "⌔︙🕷🇮🇶 Created By: [CH KLANR](https://t.me/RXXRX) || [CH IQ](https://t.me/IQTHON)\n"
+                     "⌔︙🕷🇮🇶BOT ORDERS Iraq Thon @iraqthonbot\n"
                      f"⌔︙🕷🇮🇶 My Master : {DEFAULTUSER}\n")
                      
