@@ -36,7 +36,7 @@ async def _(event):
             "⌔︙🕷🇮🇶In case here is a problem, send .restart\n")
          ONE = ("حسنا ارسل رسالتك كامله عند الفراغ ارد عليك")
          TWO = ("@IQTHON")
-         THREE = ("https://github.com/klanrali/IQTHON")
+         THREE = ("@IQTHON")
          FOUR = ("@iraqthonbot")
          LWARN = ("https://www.youtube.com/watch?v=HKLtmbiFi_Q&t=3s")
      
@@ -100,7 +100,7 @@ async def _(event):
                          await asyncio.sleep(3)
                          await event.client(functions.contacts.BlockRequest(chat_id))
              elif x == "3":
-                 await borg.send_message(chat, "https://github.com/klanrali/IQTHON")
+                 await borg.send_message(chat, "@IQTHON")
                  response = await conv.get_response(chat)
                  if not response.text == "/start":
                      await borg.send_message(chat, LWARN)
@@ -113,7 +113,7 @@ async def _(event):
                          await asyncio.sleep(3)
                          await event.client(functions.contacts.BlockRequest(chat_id))
              else:
-                 await borg.send_message(chat, "https://github.com/klanrali/IQTHON")
+                 await borg.send_message(chat, "@IQTHON")
                  response = await conv.get_response(chat)
                  if not response.text.startswith("/start"):
                      await borg.send_message(chat, TWO)
