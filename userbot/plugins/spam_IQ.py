@@ -6,7 +6,7 @@ from telethon import events
 
 
 
-@borg.on(events.NewMessage(pattern=r"\.تكرار", outgoing=True))
+@borg.on(events.NewMessage(pattern=r".تكرار", outgoing=True))
 async def spammer(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         message = e.text
