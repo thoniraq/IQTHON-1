@@ -82,7 +82,7 @@ async def on_snip_save(event):
                 snip['hash'] = media.access_hash
                 snip['fr'] = media.file_reference
         add_filter(event.chat_id, name, snip['text'], snip['type'], snip.get('id'), snip.get('hash'), snip.get('fr'))
-        await event.edit(f"filter {name} saved successfully. Get it with {name}")
+        await event.edit(f"⌔︙الرد {name} تم الحفض بنجاح. ↪️ {name}")
     else:
         await event.edit("⌔︙اولا ارسل الكلمه ثم قم برد عليها بالامر + رد للـكـلمه ↪️")
 
