@@ -13,9 +13,9 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "**No Name set yet.** [iqthon.]
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
     await alive.edit("⌔︙🕷🇮🇶 IRAQTHON\n"
-                     "⌔︙🕷🇮🇶 Version: 1.0.0\n"
+                     "⌔︙🕷🇮🇶 Version: 1.0.1\n"
                      # Don't change this else you a TikTok loser, Son of Jinping. Add your own.
                      "⌔︙🕷🇮🇶 Created By: [CH KLANR](https://t.me/RXXRX) || [CH IQ](https://t.me/IQTHON)\n"
-                     "⌔︙🕷🇮🇶BOT ORDERS Iraq Thon @iraqthonbot\n"
+                     "⌔︙🕷🇮🇶BOT ORDERS @iraqthonbot\n"
                      f"⌔︙🕷🇮🇶 My Master : {DEFAULTUSER}\n")
                      
